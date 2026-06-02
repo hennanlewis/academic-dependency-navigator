@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualização de Currículo - Dependências de Disciplinas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <h1>📚 Grade Curricular - Letras</h1>
+    <div class="subtitle">Clique em qualquer disciplina para ver seus pré-requisitos e disciplinas que ela libera</div>
+
+    <div class="legend">
+        <div class="legend-item"><div class="legend-color selected"></div><span>Disciplina Selecionada</span></div>
+        <div class="legend-item"><div class="legend-color prerequisite"></div><span>Pré-requisito</span></div>
+        <div class="legend-item"><div class="legend-color unlocked"></div><span>Disciplina Liberada</span></div>
+        <div class="legend-item"><div class="legend-color both"></div><span>Pré-requisito + Liberada</span></div>
+        <div class="legend-item"><div class="legend-color" style="background: white;"></div><span>Sem relação</span></div>
+    </div>
+
+    <button onclick="resetSelection()">🔄 Limpar Seleção</button>
+
+    <div id="curriculum-container"></div>
+</div>
+
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
