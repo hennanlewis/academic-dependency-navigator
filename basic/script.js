@@ -102,23 +102,12 @@ function getCardClass(disciplineId) {
 // Função para lidar com clique na disciplina (com suporte a múltipla seleção)
 function handleCardClick(disciplineId, event) {
   // Verifica se Ctrl ou Cmd foi pressionado
-  if (event.ctrlKey || event.metaKey) {
-    // Multi-seleção: toggle
+  // Multi-seleção: toggle
     if (selectedDisciplines.has(disciplineId)) {
       selectedDisciplines.delete(disciplineId)
     } else {
       selectedDisciplines.add(disciplineId)
     }
-  } else {
-    // Seleção única: substitui
-    if (selectedDisciplines.size === 1 && selectedDisciplines.has(disciplineId)) {
-      // Se clicar na mesma disciplina já selecionada, limpa
-      selectedDisciplines.clear()
-    } else {
-      selectedDisciplines.clear()
-      selectedDisciplines.add(disciplineId)
-    }
-  }
   renderCurriculum()
 }
 
@@ -164,12 +153,17 @@ function renderCurriculum() {
     // Ordena disciplinas por ID dentro do semestre
     disciplines.sort((a, b) => a.id.localeCompare(b.id))
 
+    // Calcula carga horária total do semestre
+    const totalWorkload = disciplines.reduce((total, discipline) => {
+      return total + discipline.workload
+    }, 0)
+
     const section = document.createElement('div')
     section.className = 'semester-section'
 
     const title = document.createElement('div')
     title.className = 'semester-title'
-    title.textContent = `${semester}º Semestre`
+    title.innerHTML = `${semester}º Semestre <span class="total-workload">(${totalWorkload}h)</span>`
     section.appendChild(title)
 
     const grid = document.createElement('div')
@@ -200,12 +194,17 @@ function renderCurriculum() {
     const optDisciplines = grouped.get(0)
     optDisciplines.sort((a, b) => a.id.localeCompare(b.id))
 
+    // Calcula carga horária total das optativas
+    const totalWorkload = optDisciplines.reduce((total, discipline) => {
+      return total + discipline.workload
+    }, 0)
+
     const section = document.createElement('div')
     section.className = 'semester-section'
 
     const title = document.createElement('div')
     title.className = 'semester-title optional'
-    title.textContent = `📖 Disciplinas Optativas e Complementares`
+    title.innerHTML = `📖 Disciplinas Optativas e Complementares <span class="total-workload">(Total: ${totalWorkload}h)</span>`
     section.appendChild(title)
 
     const grid = document.createElement('div')
@@ -217,7 +216,7 @@ function renderCurriculum() {
       card.onclick = (event) => handleCardClick(discipline.id, event)
 
       card.innerHTML = `
-                <h3>${discipline.id} - ${discipline.name}</h3>
+                <h3>${discipline.name}</h3>
                 <p>📚 ${discipline.type} (${discipline.workload}${discipline.workload_unit})</p>
             `
 
