@@ -1,0 +1,1702 @@
+const curriculumData = {
+    "total_disciplines": 81,
+    "disciplines": [
+        {
+            "id": "D001",
+            "recommendedSemester": 1,
+            "name": "Língua Inglesa I",
+            "type": "Obrigatória",
+            "workload": 80,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": []
+            }
+        },
+        {
+            "id": "D002",
+            "recommendedSemester": 1,
+            "name": "Introdução à Linguística",
+            "type": "Obrigatória",
+            "workload": 80,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": []
+            }
+        },
+        {
+            "id": "D003",
+            "recommendedSemester": 1,
+            "name": "Fonética e Fonologia do Português I",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": []
+            }
+        },
+        {
+            "id": "D04",
+            "recommendedSemester": 1,
+            "name": "Teoria da Literatura",
+            "type": "Obrigatória",
+            "workload": 80,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": []
+            }
+        },
+        {
+            "id": "D05",
+            "recommendedSemester": 1,
+            "name": "História da Educação",
+            "type": "Obrigatória",
+            "workload": 80,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": []
+            }
+        },
+        {
+            "id": "D06",
+            "recommendedSemester": 1,
+            "name": "Metodologia de Pesquisa",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": []
+            }
+        },
+        {
+            "id": "D007",
+            "recommendedSemester": 2,
+            "name": "Língua Inglesa II",
+            "type": "Obrigatória",
+            "workload": 80,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D001"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D008",
+            "recommendedSemester": 2,
+            "name": "Fonética e Fonologia do Português II",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D003"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D09",
+            "recommendedSemester": 2,
+            "name": "Literatura Brasileira I",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D04"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D10",
+            "recommendedSemester": 2,
+            "name": "Literatura Portuguesa I",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D04"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D11",
+            "recommendedSemester": 2,
+            "name": "Educação Inclusiva",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": []
+            }
+        },
+        {
+            "id": "D12",
+            "recommendedSemester": 2,
+            "name": "Psicologia do Desenvolvimento",
+            "type": "Obrigatória",
+            "workload": 80,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": []
+            }
+        },
+        {
+            "id": "D13",
+            "recommendedSemester": 2,
+            "name": "Fundamentos Sociofilosóficos da Educação",
+            "type": "Obrigatória",
+            "workload": 80,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": []
+            }
+        },
+        {
+            "id": "D014",
+            "recommendedSemester": 3,
+            "name": "Língua Inglesa III",
+            "type": "Obrigatória",
+            "workload": 80,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D007"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D15",
+            "recommendedSemester": 3,
+            "name": "Linguística Textual",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D002"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D016",
+            "recommendedSemester": 2,
+            "name": "Língua Portuguesa – Morfossintaxe I",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D002"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D17",
+            "recommendedSemester": 3,
+            "name": "Literatura Brasileira II",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D09"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D18",
+            "recommendedSemester": 3,
+            "name": "Literatura Portuguesa II",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D10"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D19",
+            "recommendedSemester": 3,
+            "name": "Psicologia da Aprendizagem",
+            "type": "Obrigatória",
+            "workload": 80,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D12"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D20",
+            "recommendedSemester": 3,
+            "name": "Didática",
+            "type": "Obrigatória",
+            "workload": 80,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D13"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D021",
+            "recommendedSemester": 4,
+            "name": "Língua Inglesa IV",
+            "type": "Obrigatória",
+            "workload": 80,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D014"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D22",
+            "recommendedSemester": 4,
+            "name": "Literatura Portuguesa III",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D18"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D23",
+            "recommendedSemester": 4,
+            "name": "Literatura Brasileira III",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D17"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D024",
+            "recommendedSemester": 3,
+            "name": "Língua Portuguesa – Morfossintaxe II",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D016"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D25",
+            "recommendedSemester": 4,
+            "name": "TICs aplicadas ao ensino",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": []
+            }
+        },
+        {
+            "id": "D26",
+            "recommendedSemester": 4,
+            "name": "Política e Gestão Educacional",
+            "type": "Obrigatória",
+            "workload": 80,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D13"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D27",
+            "recommendedSemester": 4,
+            "name": "Currículo e Práticas Educativas",
+            "type": "Obrigatória",
+            "workload": 80,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D13"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D028",
+            "recommendedSemester": 5,
+            "name": "Língua Inglesa V",
+            "type": "Obrigatória",
+            "workload": 80,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D021"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D029",
+            "recommendedSemester": 3,
+            "name": "Fonética e Fonologia do Inglês I",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D008"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D30",
+            "recommendedSemester": 5,
+            "name": "Teoria da Tradução",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D014"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D031",
+            "recommendedSemester": 4,
+            "name": "Língua Latina – Latim I",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D024"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D32",
+            "recommendedSemester": 5,
+            "name": "Literatura Brasileira IV",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D23"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D33",
+            "recommendedSemester": 5,
+            "name": "Estágio Supervisionado I – Língua Portuguesa",
+            "type": "Obrigatória",
+            "workload": 80,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D20"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D34",
+            "recommendedSemester": 5,
+            "name": "Projetos Sociais",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": []
+            }
+        },
+        {
+            "id": "D035",
+            "recommendedSemester": 6,
+            "name": "Língua Inglesa VI",
+            "type": "Obrigatória",
+            "workload": 80,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D028"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D036",
+            "recommendedSemester": 4,
+            "name": "Fonética e Fonologia do Inglês II",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D029"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D37",
+            "recommendedSemester": 6,
+            "name": "Compreensão e análise de texto em L. Inglesa",
+            "type": "Obrigatória",
+            "workload": 80,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D028"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D038",
+            "recommendedSemester": 5,
+            "name": "Língua Latina – Latim II",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D031"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D39",
+            "recommendedSemester": 6,
+            "name": "História da Cultura Indígena e Afro-Brasileira",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": []
+            }
+        },
+        {
+            "id": "D40",
+            "recommendedSemester": 6,
+            "name": "Literatura Cearense",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D04"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D41",
+            "recommendedSemester": 6,
+            "name": "Estágio Supervisionado II – Língua Portuguesa",
+            "type": "Obrigatória",
+            "workload": 80,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D33"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D042",
+            "recommendedSemester": 6,
+            "name": "Tradução da Língua Inglesa",
+            "type": "Obrigatória",
+            "workload": 80,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D30"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D043",
+            "recommendedSemester": 5,
+            "name": "Morfossintaxe da Língua Inglesa",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D021"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D44",
+            "recommendedSemester": 7,
+            "name": "Literatura Africana de Língua Portuguesa",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D04"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D45",
+            "recommendedSemester": 7,
+            "name": "Pesquisa Científica",
+            "type": "Obrigatória",
+            "workload": 80,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D06"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D46",
+            "recommendedSemester": 7,
+            "name": "Estágio Supervisionado III – Língua Portuguesa",
+            "type": "Obrigatória",
+            "workload": 80,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D41"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D47",
+            "recommendedSemester": 7,
+            "name": "Estágio Supervisionado I – Língua Inglesa",
+            "type": "Obrigatória",
+            "workload": 80,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D035"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D048",
+            "recommendedSemester": 7,
+            "name": "Literatura de Língua Inglesa I",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D035"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D49",
+            "recommendedSemester": 8,
+            "name": "Literatura Comparada",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D04"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D050",
+            "recommendedSemester": 5,
+            "name": "Linguística Aplicada",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D002"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D51",
+            "recommendedSemester": 8,
+            "name": "Sociolinguística",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D002"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D52",
+            "recommendedSemester": 8,
+            "name": "Educação Popular",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": []
+            }
+        },
+        {
+            "id": "D53",
+            "recommendedSemester": 8,
+            "name": "Estágio Supervisionado IV – Língua Portuguesa",
+            "type": "Obrigatória",
+            "workload": 80,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D46"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D54",
+            "recommendedSemester": 8,
+            "name": "Estágio Supervisionado II – Língua Inglesa",
+            "type": "Obrigatória",
+            "workload": 80,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D47"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D55",
+            "recommendedSemester": 8,
+            "name": "Trabalho de Conclusão de Curso – TCC 1",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D45"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D056",
+            "recommendedSemester": 8,
+            "name": "Literatura de Língua Inglesa II",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D048"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D57",
+            "recommendedSemester": 9,
+            "name": "Literatura Infanto-Juvenil",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D04"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D58",
+            "recommendedSemester": 9,
+            "name": "Linguística (Cognitiva e Psicolinguística)",
+            "type": "Obrigatória",
+            "workload": 80,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D002"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D059",
+            "recommendedSemester": 8,
+            "name": "Introdução ao Estudo de Libras",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": []
+            }
+        },
+        {
+            "id": "D60",
+            "recommendedSemester": 9,
+            "name": "Estágio Supervisionado V – Língua Portuguesa",
+            "type": "Obrigatória",
+            "workload": 80,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D53"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D61",
+            "recommendedSemester": 9,
+            "name": "Estágio Supervisionado III – Língua Inglesa",
+            "type": "Obrigatória",
+            "workload": 80,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D54"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D62",
+            "recommendedSemester": 9,
+            "name": "Trabalho de Conclusão de Curso – TCC 2",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D55"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D063",
+            "recommendedSemester": 9,
+            "name": "Literatura de Língua Inglesa III",
+            "type": "Obrigatória",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D056"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D64",
+            "recommendedSemester": 10,
+            "name": "Estágio Supervisionado IV – Língua Inglesa",
+            "type": "Obrigatória",
+            "workload": 80,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D61"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D065",
+            "recommendedSemester": 7,
+            "name": "Módulo Avançado em Língua Inglesa",
+            "type": "Optativa",
+            "workload": 80,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D035"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D66",
+            "recommendedSemester": 0,
+            "name": "Cultura Inglesa I (EUA)",
+            "type": "Optativa",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": []
+            }
+        },
+        {
+            "id": "D67",
+            "recommendedSemester": 0,
+            "name": "Cultura Inglesa II (Grã-Bretanha)",
+            "type": "Optativa",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": []
+            }
+        },
+        {
+            "id": "D68",
+            "recommendedSemester": 0,
+            "name": "Teoria do Verso",
+            "type": "Optativa",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D04"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D69",
+            "recommendedSemester": 0,
+            "name": "Semiótica",
+            "type": "Optativa",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D002"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D70",
+            "recommendedSemester": 0,
+            "name": "Leitura e Produção de Textos Acadêmicos",
+            "type": "Optativa",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D002"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D71",
+            "recommendedSemester": 0,
+            "name": "Leitura de Textos Acadêmicos em Espanhol",
+            "type": "Optativa",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": []
+            }
+        },
+        {
+            "id": "D72",
+            "recommendedSemester": 0,
+            "name": "Estilística",
+            "type": "Optativa",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D002"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D73",
+            "recommendedSemester": 0,
+            "name": "Educação Física",
+            "type": "Optativa",
+            "workload": 80,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": []
+            }
+        },
+        {
+            "id": "D74",
+            "recommendedSemester": 0,
+            "name": "Gestão Escolar",
+            "type": "Optativa",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "OR",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D13"
+                    },
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D26"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D75",
+            "recommendedSemester": 0,
+            "name": "Introdução à EAD",
+            "type": "Optativa",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D27"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D76",
+            "recommendedSemester": 0,
+            "name": "Educação Profissional no Brasil",
+            "type": "Optativa",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D27"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D77",
+            "recommendedSemester": 0,
+            "name": "Educação de Jovens e Adultos (EJA)",
+            "type": "Optativa",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D27"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D78",
+            "recommendedSemester": 0,
+            "name": "Gramática da Língua Inglesa I",
+            "type": "Complementar",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D001"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D79",
+            "recommendedSemester": 0,
+            "name": "Gramática da Língua Inglesa II",
+            "type": "Complementar",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D007"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D80",
+            "recommendedSemester": 0,
+            "name": "Gramática da Língua Inglesa III",
+            "type": "Complementar",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D014"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "D81",
+            "recommendedSemester": 0,
+            "name": "Gramática da Língua Inglesa IV",
+            "type": "Complementar",
+            "workload": 40,
+            "workload_unit": "h",
+            "offering": {
+                "frequency": "annual",
+                "periods": [1]
+            },
+            "prerequisites": {
+                "type": "group",
+                "operator": "AND",
+                "items": [
+                    {
+                        "type": "discipline",
+                        "disciplineId": "D021"
+                    }
+                ]
+            }
+        }
+    ]
+}
+console.log(curriculumData);
