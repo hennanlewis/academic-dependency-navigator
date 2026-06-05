@@ -1,0 +1,212 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 24px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    background: #f5f5f5;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: #666;
+    margin-bottom: 24px;
+    font-size: 14px;
+}
+
+.semester-section {
+    margin-bottom: 32px;
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.semester-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 0 16px 0;
+    padding-bottom: 8px;
+    border-bottom: 3px solid #1976d2;
+    color: #1976d2;
+}
+
+.semester-title.optional {
+    border-bottom-color: #9e9e9e;
+    color: #9e9e9e;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+}
+
+.card {
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Estados das disciplinas */
+.card.selected {
+    background: #2196f3;
+    border-color: #0d47a1;
+    color: white;
+}
+
+.card.prerequisite {
+    background: #4caf50;
+    border-color: #1b5e20;
+    color: white;
+}
+
+.card.unlocked {
+    background: #ff9800;
+    border-color: #e65100;
+    color: white;
+}
+
+.card.prerequisite.unlocked {
+    background: #9c27b0;
+    border-color: #4a148c;
+    color: white;
+}
+
+/* Override para textos escuros em fundos claros (caso de conflito) */
+.card h3,
+.card p {
+    margin: 0;
+}
+
+.card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.card p {
+    font-size: 12px;
+    margin: 4px 0;
+    opacity: 0.9;
+}
+
+.card .workload {
+    font-size: 11px;
+    margin-top: 8px;
+    font-weight: 500;
+}
+
+.legend {
+    background: white;
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.legend-color {
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    border: 2px solid #ddd;
+}
+
+.legend-color.selected {
+    background: #2196f3;
+}
+
+.legend-color.prerequisite {
+    background: #4caf50;
+}
+
+.legend-color.unlocked {
+    background: #ff9800;
+}
+
+.legend-color.both {
+    background: #9c27b0;
+}
+
+button {
+    background: #1976d2;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 20px;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #0d47a1;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 12px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.shortcut-hint {
+    background: #e8eaf6;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #333;
+}
+
+kbd {
+    background: #333;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 12px;
+    margin: 0 2px;
+}
