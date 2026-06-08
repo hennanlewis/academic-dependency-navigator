@@ -75,7 +75,7 @@ h1 {
     color: white;
 }
 
-.card.prerequisite {
+.card.prerequisite, .card.completed {
     background: #4caf50;
     border-color: #1b5e20;
     color: white;
