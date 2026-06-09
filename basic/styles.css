@@ -55,7 +55,7 @@ h1 {
 
 .card {
     background: white;
-    border: 2px solid #e0e0e0;
+    border: 3px solid #e0e0e0;
     border-radius: 10px;
     padding: 12px;
     cursor: pointer;
@@ -73,12 +73,22 @@ h1 {
     background: #2196f3;
     border-color: #0d47a1;
     color: white;
+    transform: translateY(-4px);
+    box-shadow: #333a 0 2px 5px;
 }
 
-.card.prerequisite, .card.completed {
+.card.prerequisite {
     background: #4caf50;
     border-color: #1b5e20;
     color: white;
+}
+
+.card.completed {
+    background: #4caf50;
+    border-color: #1b5e20;
+    color: white;
+    box-shadow: #333a 0 2px 5px;
+    transform: translateY(-4px);
 }
 
 .card.unlocked {
