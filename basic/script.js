@@ -1,7 +1,61 @@
+
 let prereqMap = new Map()
 let unlocksMap = new Map()
-let selectedDisciplines = new Set()
-let completedDisciplines = new Set()
+
+const appState = {
+    selected: new Set(),
+    completed: new Set()
+}
+
+function getExpansionSources() {
+    return [
+        ...appState.selected,
+        ...appState.completed
+    ]
+}
+
+function getRelations(disciplineId) {
+
+    let prerequisite = false
+    let unlocked = false
+
+    for (const sourceId of getExpansionSources()) {
+
+        if (prereqMap.get(sourceId)?.includes(disciplineId))
+            prerequisite = true
+
+        if (unlocksMap.get(sourceId)?.includes(disciplineId))
+            unlocked = true
+
+        if (prerequisite && unlocked)
+            break
+    }
+
+    return {
+        prerequisite,
+        unlocked
+    }
+}
+
+function getCardState(disciplineId) {
+
+    const relations = getRelations(disciplineId)
+
+    return {
+
+        selected:
+            appState.selected.has(disciplineId),
+
+        completed:
+            appState.completed.has(disciplineId),
+
+        prerequisite:
+            relations.prerequisite,
+
+        unlocked:
+            relations.unlocked
+    }
+}
 
 function getAllPrerequisites(disciplineId, visited = new Set()) {
     if (visited.has(disciplineId)) return []
@@ -67,60 +121,43 @@ function buildDependencyMap() {
     return { prereqMap, unlocksMap }
 }
 
-function getCardClass(disciplineId) {
-    const classes = []
-    const activeDisciplines = [
-        ...selectedDisciplines,
-        ...completedDisciplines
-    ]
+function getCardClasses(disciplineId) {
 
-    if (selectedDisciplines.has(disciplineId))
-        classes.push("selected")
+    const state = getCardState(disciplineId)
 
-    if (completedDisciplines.has(disciplineId))
-        classes.push("completed")
+    const classes = ["card"]
 
-    let isPrerequisite = false
-    let isUnlocked = false
-
-    for (const selectedId of activeDisciplines) {
-        if (prereqMap.get(selectedId)?.includes(disciplineId))
-            isPrerequisite = true
-
-        if (unlocksMap.get(selectedId)?.includes(disciplineId))
-            isUnlocked = true
+    for (const [name, enabled] of Object.entries(state)) {
+        if (enabled)
+            classes.push(name)
     }
-
-    if (isPrerequisite)
-        classes.push("prerequisite")
-
-    if (isUnlocked)
-        classes.push("unlocked")
 
     return classes.join(" ")
 }
 
+function toggle(set, value) {
+
+    if (set.has(value))
+        set.delete(value)
+    else
+        set.add(value)
+}
+
 function handleCardClick(disciplineId, event) {
-    if (event.altKey) {
-        if (completedDisciplines.has(disciplineId)) {
-            completedDisciplines.delete(disciplineId)
-        } else {
-            completedDisciplines.add(disciplineId)
-        }
-    } else {
-        if (selectedDisciplines.has(disciplineId)) {
-            selectedDisciplines.delete(disciplineId)
-        } else {
-            selectedDisciplines.add(disciplineId)
-        }
-    }
+
+    if (event.altKey)
+        toggle(appState.completed, disciplineId)
+    else
+        toggle(appState.selected, disciplineId)
 
     renderCurriculum()
 }
 
 window.resetSelection = function () {
-    selectedDisciplines.clear()
-    completedDisciplines.clear()
+
+    appState.selected.clear()
+    appState.completed.clear()
+
     renderCurriculum()
 }
 
@@ -143,6 +180,66 @@ function groupBySemester() {
 
     // Ordena os semestres
     return new Map([...grouped.entries()].sort((a, b) => a[0] - b[0]))
+}
+
+function buildVisualState(state) {
+
+    return {
+
+        background:
+            state.selected
+                ? "selected"
+                : state.completed
+                    ? "completed"
+                    : "default",
+
+        border:
+            state.prerequisite
+                ? "prerequisite"
+                : "default",
+
+        badge:
+            state.unlocked
+                ? "unlocked"
+                : null
+    }
+}
+
+function buildClasses(state) {
+
+    const visual = buildVisualState(state)
+
+    return [
+        "card",
+        `bg-${visual.background}`,
+        `border-${visual.border}`,
+        visual.badge && `badge-${visual.badge}`
+    ]
+        .filter(Boolean)
+        .join(" ")
+}
+
+function buildCardViewModel(id) {
+
+    const relations = getRelations(id)
+
+    return {
+
+        id,
+
+        state: {
+            selected: appState.selected.has(id),
+            completed: appState.completed.has(id)
+        },
+
+        relations,
+
+        classes: buildClasses({
+            selected: appState.selected.has(id),
+            completed: appState.completed.has(id),
+            ...relations
+        })
+    }
 }
 
 function renderCurriculum() {
@@ -172,7 +269,9 @@ function renderCurriculum() {
 
         disciplines.forEach(discipline => {
             const card = document.createElement('div')
-            card.className = `card ${getCardClass(discipline.id)}`
+            const vm = buildCardViewModel(discipline.id)
+
+            card.className = vm.classes
             card.onclick = (event) => handleCardClick(discipline.id, event)
 
             card.innerHTML = `
@@ -211,7 +310,9 @@ function renderCurriculum() {
 
         optDisciplines.forEach(discipline => {
             const card = document.createElement('div')
-            card.className = `card ${getCardClass(discipline.id)}`
+            const vm = buildCardViewModel(discipline.id)
+
+            card.className = vm.classes
             card.onclick = (event) => handleCardClick(discipline.id, event)
 
             card.innerHTML = `
