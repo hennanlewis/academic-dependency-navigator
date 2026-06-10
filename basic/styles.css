@@ -59,8 +59,8 @@ h1 {
     border-radius: 10px;
     padding: 12px;
     cursor: pointer;
-    transition: all 0.2s ease;
     position: relative;
+    transition: all 0.2s ease;
 }
 
 .card:hover {
@@ -68,42 +68,43 @@ h1 {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Estados das disciplinas */
-.card.selected {
+.card.bg-default {
+    background: white;
+    color: black;
+}
+
+.card.bg-selected {
     background: #2196f3;
-    border-color: #0d47a1;
     color: white;
     transform: translateY(-4px);
-    box-shadow: #333a 0 2px 5px;
+    box-shadow: #333a 0 4px 5px;
 }
 
-.card.prerequisite {
+.card.bg-completed {
     background: #4caf50;
-    border-color: #1b5e20;
     color: white;
-}
-
-.card.completed {
-    background: #4caf50;
-    border-color: #1b5e20;
-    color: white;
-    box-shadow: #333a 0 2px 5px;
     transform: translateY(-4px);
+    box-shadow: #333a 0 4px 5px;
 }
 
-.card.unlocked {
-    background: #ff9800;
-    border-color: #e65100;
-    color: white;
+.card.border-default {
+    border-color: #ddd;
 }
 
-.card.prerequisite.unlocked {
-    background: #9c27b0;
-    border-color: #4a148c;
-    color: white;
+.card.border-prerequisite {
+    border-color: #1b5e20;
+    transform: translateY(-4px);
+    box-shadow: #333a 0 4px 5px;
 }
 
-/* Override para textos escuros em fundos claros (caso de conflito) */
+.card.badge-unlocked::after {
+    content: "👍🏽";
+    position: absolute;
+    right: -8px;
+    top: -8px;
+    filter: drop-shadow(#4caf50 0 0 2px);
+}
+
 .card h3,
 .card p {
     margin: 0;
