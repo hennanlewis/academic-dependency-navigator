@@ -1,16 +1,84 @@
-
 let prereqMap = new Map()
 let unlocksMap = new Map()
 
+const STATUS = {
+    NONE: null,
+    COMPLETED: "completed",
+    CURRENT: "current",
+    FAILED: "failed"
+}
+
 const appState = {
     selected: new Set(),
-    completed: new Set()
+    status: new Map()
 }
+
+const statusMenu = document.getElementById("status-menu")
+let currentDisciplineId = null
+
+function openStatusMenu(button, disciplineId) {
+    currentDisciplineId = disciplineId
+
+    statusMenu.style.left = `${button.getBoundingClientRect().right}px`
+    statusMenu.style.top = `${button.getBoundingClientRect().bottom}px`
+
+    statusMenu.showPopover()
+}
+
+function closeStatusMenu() {
+    statusMenu.hidePopover()
+}
+
+function markPrerequisitesCompleted(disciplineId) {
+    const prereqs = getAllPrerequisites(disciplineId)
+
+    prereqs.forEach(id => {
+        if (appState.status.get(id) !== STATUS.FAILED) {
+            appState.status.set(id, STATUS.COMPLETED)
+        }
+    })
+}
+
+statusMenu.querySelectorAll("button").forEach(button => {
+    button.addEventListener("click", () => {
+        if (!currentDisciplineId) return
+
+        const status = button.dataset.status
+
+        if (status) {
+            appState.status.set(currentDisciplineId, status)
+
+            if (status === STATUS.CURRENT) {
+                const prereqs = getAllPrerequisites(currentDisciplineId)
+
+                prereqs.forEach(id => {
+                    const currentStatus = appState.status.get(id)
+
+                    if (currentStatus !== STATUS.FAILED) {
+                        appState.status.set(id, STATUS.COMPLETED)
+                    }
+                })
+            }
+        } else {
+            appState.status.delete(currentDisciplineId)
+        }
+
+        closeStatusMenu()
+        renderCurriculum()
+    })
+})
+
+document.addEventListener("click", event => {
+    if (!statusMenu.contains(event.target))
+        closeStatusMenu()
+})
 
 function getExpansionSources() {
     return [
         ...appState.selected,
-        ...appState.completed
+        ...[...appState.status]
+            .filter(([, status]) => status === STATUS.COMPLETED)
+            .map(([id]) => id)
     ]
 }
 
@@ -38,22 +106,13 @@ function getRelations(disciplineId) {
 }
 
 function getCardState(disciplineId) {
-
     const relations = getRelations(disciplineId)
 
     return {
-
-        selected:
-            appState.selected.has(disciplineId),
-
-        completed:
-            appState.completed.has(disciplineId),
-
-        prerequisite:
-            relations.prerequisite,
-
-        unlocked:
-            relations.unlocked
+        selected: appState.selected.has(disciplineId),
+        status: appState.status.get(disciplineId) ?? STATUS.NONE,
+        prerequisite: relations.prerequisite,
+        unlocked: relations.unlocked
     }
 }
 
@@ -121,20 +180,6 @@ function buildDependencyMap() {
     return { prereqMap, unlocksMap }
 }
 
-function getCardClasses(disciplineId) {
-
-    const state = getCardState(disciplineId)
-
-    const classes = ["card"]
-
-    for (const [name, enabled] of Object.entries(state)) {
-        if (enabled)
-            classes.push(name)
-    }
-
-    return classes.join(" ")
-}
-
 function toggle(set, value) {
 
     if (set.has(value))
@@ -143,20 +188,14 @@ function toggle(set, value) {
         set.add(value)
 }
 
-function handleCardClick(disciplineId, event) {
-
-    if (event.altKey)
-        toggle(appState.completed, disciplineId)
-    else
-        toggle(appState.selected, disciplineId)
-
+function handleCardClick(disciplineId) {
+    toggle(appState.selected, disciplineId)
     renderCurriculum()
 }
 
 window.resetSelection = function () {
-
     appState.selected.clear()
-    appState.completed.clear()
+    appState.status.clear()
 
     renderCurriculum()
 }
@@ -178,67 +217,53 @@ function groupBySemester() {
         grouped.get(semester).push(discipline)
     })
 
-    // Ordena os semestres
     return new Map([...grouped.entries()].sort((a, b) => a[0] - b[0]))
 }
 
+function getCardClass(state, relation) {
+    if (state.selected)
+        return "selected"
+
+    if (state.status !== STATUS.NONE || relation !== null)
+        return "active"
+
+    return "default"
+}
+
+function getRelation(state) {
+    if (state.prerequisite && state.unlocked)
+        return "both"
+
+    if (state.prerequisite)
+        return "prerequisite"
+
+    if (state.unlocked)
+        return "unlocked"
+
+    return null
+}
+
 function buildVisualState(state) {
+    const relation = getRelation(state)
 
     return {
-
-        background:
-            state.selected
-                ? "selected"
-                : state.completed
-                    ? "completed"
-                    : "default",
-
-        border:
-            state.prerequisite
-                ? "prerequisite"
-                : "default",
-
-        badge:
-            state.unlocked
-                ? "unlocked"
-                : null
+        classes: [getCardClass(state, relation)],
+        attributes: {
+            "data-status": state.status,
+            "data-relation": relation
+        }
     }
 }
 
-function buildClasses(state) {
-
+function buildCardViewModel(id) {
+    const state = getCardState(id)
     const visual = buildVisualState(state)
 
-    return [
-        "card",
-        `bg-${visual.background}`,
-        `border-${visual.border}`,
-        visual.badge && `badge-${visual.badge}`
-    ]
-        .filter(Boolean)
-        .join(" ")
-}
-
-function buildCardViewModel(id) {
-
-    const relations = getRelations(id)
-
     return {
-
         id,
-
-        state: {
-            selected: appState.selected.has(id),
-            completed: appState.completed.has(id)
-        },
-
-        relations,
-
-        classes: buildClasses({
-            selected: appState.selected.has(id),
-            completed: appState.completed.has(id),
-            ...relations
-        })
+        state,
+        classes: ["card", ...visual.classes],
+        attributes: visual.attributes
     }
 }
 
@@ -271,16 +296,34 @@ function renderCurriculum() {
             const card = document.createElement('div')
             const vm = buildCardViewModel(discipline.id)
 
-            card.className = vm.classes
+            card.className = vm.classes.join(" ")
+
+            Object.entries(vm.attributes).forEach(([name, value]) => {
+                if (value == null)
+                    card.removeAttribute(name)
+                else
+                    card.setAttribute(name, value)
+            })
+
+            if (vm.state.status)
+                card.dataset.status = vm.state.status
+
             card.onclick = (event) => handleCardClick(discipline.id, event)
 
             card.innerHTML = `
                 <h3>${discipline.name} (${discipline.workload}${discipline.workload_unit})</h3>
                 <!--<p>📚 ${discipline.type}</p>
                 <div class="workload">
-                    ${discipline.prerequisites && discipline.prerequisites.items.length > 0 ? '🔗 Tem pré-requisitos' : '✅ Sem pré-requisitos'}
+                ${discipline.prerequisites && discipline.prerequisites.items.length > 0 ? '🔗 Tem pré-requisitos' : '✅ Sem pré-requisitos'}
                 </div>-->
+                <button class="card-menu-btn">Estado</button>
             `
+
+            const menuButton = card.querySelector(".card-menu-btn")
+            menuButton.addEventListener("click", event => {
+                event.stopPropagation()
+                openStatusMenu(menuButton, discipline.id)
+            })
 
             grid.appendChild(card)
         })
@@ -312,13 +355,30 @@ function renderCurriculum() {
             const card = document.createElement('div')
             const vm = buildCardViewModel(discipline.id)
 
-            card.className = vm.classes
+            card.className = vm.classes.join(" ")
+
+            Object.entries(vm.attributes).forEach(([name, value]) => {
+                if (value == null)
+                    card.removeAttribute(name)
+                else
+                    card.setAttribute(name, value)
+            })
+
             card.onclick = (event) => handleCardClick(discipline.id, event)
 
             card.innerHTML = `
-                <h3>${discipline.name}</h3>
-                <p>📚 ${discipline.type} (${discipline.workload}${discipline.workload_unit})</p>
+                <div>
+                    <h3>${discipline.name}</h3>
+                    <p>📚 ${discipline.type} (${discipline.workload}${discipline.workload_unit})</p>
+                </div>
+                <button class="card-menu-btn">Estado</button>
             `
+
+            const menuButton = card.querySelector(".card-menu-btn")
+            menuButton.addEventListener("click", event => {
+                event.stopPropagation()
+                openStatusMenu(menuButton, discipline.id)
+            })
 
             grid.appendChild(card)
         })
