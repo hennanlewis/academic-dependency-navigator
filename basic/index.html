@@ -1,32 +1,36 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visualização de Currículo - Dependências de Disciplinas</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-<div class="container">
-    <h1>📚 Matriz Curricular Letras - Inglês (IFCE Camocim)</h1>
-    <div class="subtitle">Clique em qualquer disciplina para ver seus pré-requisitos e disciplinas que ela libera</div>
-<div>
+    <div class="container">
+        <h1>📚 Matriz Curricular Letras - Inglês (IFCE Camocim)</h1>
+        <div class="subtitle">Clique em qualquer disciplina para ver seus pré-requisitos e disciplinas que ela libera
+        </div>
+
+        <button onclick="resetSelection()">🔄 Limpar Seleção</button>
+
+        <div id="curriculum-container">
+            
+        </div>
+
+        <div id="status-menu" class="status-menu" popover>
+            <button data-status="completed">✅ Aprovada</button>
+            <button data-status="current">⏳ Cursando</button>
+            <button data-status="failed">❌ Reprovada</button>
+            <hr>
+            <button data-status="">Restaurar</button>
+        </div>
     </div>
 
-    <button onclick="resetSelection()">🔄 Limpar Seleção</button>
-
-    <div id="curriculum-container"></div>
-
-    <div id="status-menu" class="status-menu" popover>
-        <button data-status="completed">✅ Aprovada</button>
-        <button data-status="current">⏳ Cursando</button>
-        <button data-status="failed">❌ Reprovada</button>
-        <hr>
-        <button data-status="">Restaurar</button>
-    </div>
-</div>
-
-<script src="data.js"></script>
-<script src="script.js"></script>
+    <script src="data.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>
