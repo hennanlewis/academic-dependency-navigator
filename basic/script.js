@@ -19,8 +19,10 @@ let currentDisciplineId = null
 function openStatusMenu(button, disciplineId) {
     currentDisciplineId = disciplineId
 
-    statusMenu.style.left = `${button.getBoundingClientRect().right}px`
-    statusMenu.style.top = `${button.getBoundingClientRect().bottom}px`
+    const rect = button.getBoundingClientRect()
+
+    statusMenu.style.left = `${Math.floor(rect.left)}px`
+    statusMenu.style.top = `${Math.floor(rect.top)}px`
 
     statusMenu.showPopover()
 }
@@ -64,7 +66,8 @@ statusMenu.querySelectorAll("button").forEach(button => {
         }
 
         closeStatusMenu()
-        renderCurriculum()
+
+        refreshUI()
     })
 })
 
@@ -190,7 +193,8 @@ function toggle(set, value) {
 
 function handleCardClick(disciplineId) {
     toggle(appState.selected, disciplineId)
-    renderCurriculum()
+
+    refreshUI()
 }
 
 window.resetSelection = function () {
@@ -392,7 +396,35 @@ function refreshMaps() {
     const maps = buildDependencyMap()
     prereqMap = maps.prereqMap
     unlocksMap = maps.unlocksMap
+
+    refreshUI()
+}
+
+function saveState() {
+    localStorage.setItem(
+        "curriculum-state",
+        JSON.stringify({
+            selected: [...appState.selected],
+            status: [...appState.status]
+        })
+    )
+}
+
+function loadState() {
+    const saved = localStorage.getItem("curriculum-state")
+
+    if (!saved) return
+
+    const data = JSON.parse(saved)
+
+    appState.selected = new Set(data.selected)
+    appState.status = new Map(data.status)
+}
+
+function refreshUI() {
+    saveState()
     renderCurriculum()
 }
 
+loadState()
 refreshMaps()
