@@ -122,15 +122,20 @@ h1 {
 }
 
 .card[data-status="completed"] h3::after {
-    content: "✅";
+    content: "👍🏽";
 }
 
 .card[data-status="current"] h3::after {
     content: "⏳";
 }
 
+.card[data-status="failed"] {
+    background-color: #e30032;
+    color: #fff;
+}
+
 .card[data-status="failed"] h3::after {
-    content: "❌";
+    content: "👎🏽";
 }
 
 .card h3,
@@ -197,8 +202,7 @@ h1 {
 
 .status-menu {
     position: fixed;
-    right: 0;
-    left: 0;
+    margin: 0;
     width: 200px;
     background-color: #fff;
     border: 1px solid #ccc;
@@ -221,6 +225,7 @@ h1 {
 .status-menu button:hover {
     background-color: #f5f5f5;
 }
+
 .card .workload {
     font-size: 11px;
     margin-top: 8px;
