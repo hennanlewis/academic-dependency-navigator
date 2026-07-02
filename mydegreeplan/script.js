@@ -411,7 +411,7 @@ function saveState() {
 }
 
 function loadState() {
-    const saved = localStorage.getItem("curriculum-state")
+    const saved = localStorage.getItem("curriculum-state-mydegreeplan")
 
     if (!saved) return
 
