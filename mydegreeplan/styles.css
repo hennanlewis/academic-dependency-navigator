@@ -75,7 +75,9 @@ h1 {
     color: #333;
 }
 
-.card.selected {
+.card.selected,
+.card.selected[data-status],
+.card.selected[data-relation] {
     background-color: #2196f3;
     color: #fff;
     transform: translateY(-4px);
@@ -93,10 +95,6 @@ h1 {
     border-color: #1b5e20;
 }
 
-.card[data-relation="unlocked"] h3::after {
-    content: "🔓";
-}
-
 .card[data-relation="prerequisite"],
 .card[data-status="completed"] {
     border-color: #4caf50;
@@ -111,14 +109,24 @@ h1 {
     box-shadow: 0 0 5px 1px #ffa500;
 }
 
-.card[data-relation="unlocked"]:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 1px 5px 1px #ffa500;
+.card[data-status="failed"] {
+    background-color: #e30032;
+    color: #fff;
 }
 
 .card[data-status="completed"] {
     background-color: #4caf50;
     color: #fff;
+}
+
+.card[data-status="current"] {
+    background-color: #333;
+    color: #fff;
+    box-shadow: 0 0 5px 1px #4caf50;
+}
+
+.card[data-relation="unlocked"] h3::after {
+    content: "🔓";
 }
 
 .card[data-status="completed"] h3::after {
@@ -127,11 +135,6 @@ h1 {
 
 .card[data-status="current"] h3::after {
     content: "⏳";
-}
-
-.card[data-status="failed"] {
-    background-color: #e30032;
-    color: #fff;
 }
 
 .card[data-status="failed"] h3::after {
