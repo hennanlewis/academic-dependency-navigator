@@ -1699,4 +1699,3 @@ const curriculumData = {
         }
     ]
 }
-console.log(curriculumData);
