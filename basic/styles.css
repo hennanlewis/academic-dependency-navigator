@@ -54,6 +54,7 @@ h1 {
 }
 
 .card {
+    order: 1;
     position: relative;
     padding: 12px;
     display: flex;
@@ -110,16 +111,19 @@ h1 {
 }
 
 .card[data-status="failed"] {
+    order: 2;
     background-color: #e30032;
     color: #fff;
 }
 
 .card[data-status="completed"] {
+    order: 0;
     background-color: #4caf50;
     color: #fff;
 }
 
 .card[data-status="current"] {
+    order: -1;
     background-color: #333;
     color: #fff;
     box-shadow: 0 0 5px 1px #4caf50;
