@@ -402,7 +402,7 @@ function refreshMaps() {
 
 function saveState() {
     localStorage.setItem(
-        "curriculum-state",
+        "curriculum-state-mydegreeplan",
         JSON.stringify({
             selected: [...appState.selected],
             status: [...appState.status]
