@@ -85,13 +85,20 @@ function getExpansionSources() {
     ]
 }
 
-function getRelations(disciplineId) {
+function hasPrerequisites(disciplineId) {
+    const discipline = curriculumData.disciplines.find(d => d.id === disciplineId)
 
+    return (
+        discipline?.prerequisites &&
+        discipline.prerequisites.items.length > 0
+    )
+}
+
+function getRelations(disciplineId) {
     let prerequisite = false
-    let unlocked = false
+    let unlocked = !hasPrerequisites(disciplineId)
 
     for (const sourceId of getExpansionSources()) {
-
         if (prereqMap.get(sourceId)?.includes(disciplineId))
             prerequisite = true
 
@@ -184,7 +191,6 @@ function buildDependencyMap() {
 }
 
 function toggle(set, value) {
-
     if (set.has(value))
         set.delete(value)
     else
@@ -193,7 +199,6 @@ function toggle(set, value) {
 
 function handleCardClick(disciplineId) {
     toggle(appState.selected, disciplineId)
-
     refreshUI()
 }
 
