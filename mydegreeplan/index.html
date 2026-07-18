@@ -23,7 +23,29 @@
             <button data-status="current">⏳ Cursando</button>
             <button data-status="failed">❌ Reprovada</button>
             <hr>
+            <button id="move-semester-btn" data-action="move-semester">📦 Mover semestre</button>
+            <button id="new-attempt-btn" data-action="new-attempt">📄 Nova tentativa</button>
+            <hr>
             <button data-status="">Restaurar</button>
+        </div>
+
+        <div id="semester-dialog" popover>
+            <h3>Selecionar semestre</h3>
+
+            <select id="semester-select">
+                <option value="1">1º Semestre</option>
+                <option value="2">2º Semestre</option>
+                <option value="3">3º Semestre</option>
+                <option value="4">4º Semestre</option>
+                <option value="5">5º Semestre</option>
+                <option value="6">6º Semestre</option>
+                <option value="7">7º Semestre</option>
+                <option value="8">8º Semestre</option>
+                <option value="9">9º Semestre</option>
+                <option value="10">10º Semestre</option>
+            </select>
+
+            <button id="semester-confirm">Confirmar</button>
         </div>
     </div>
 
