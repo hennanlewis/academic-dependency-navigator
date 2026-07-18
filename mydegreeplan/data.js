@@ -2,7 +2,7 @@ const curriculumData = {
     "total_disciplines": 81,
     "disciplines": [
         {
-            "id": "D001",
+            "id": "D01",
             "recommendedSemester": 1,
             "name": "Língua Inglesa I",
             "type": "Obrigatória",
@@ -19,7 +19,7 @@ const curriculumData = {
             }
         },
         {
-            "id": "D002",
+            "id": "D02",
             "recommendedSemester": 1,
             "name": "Introdução à Linguística",
             "type": "Obrigatória",
@@ -36,7 +36,7 @@ const curriculumData = {
             }
         },
         {
-            "id": "D003",
+            "id": "D03",
             "recommendedSemester": 1,
             "name": "Fonética e Fonologia do Português I",
             "type": "Obrigatória",
@@ -104,7 +104,7 @@ const curriculumData = {
             }
         },
         {
-            "id": "D007",
+            "id": "D07",
             "recommendedSemester": 2,
             "name": "Língua Inglesa II",
             "type": "Obrigatória",
@@ -120,13 +120,13 @@ const curriculumData = {
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D001"
+                        "disciplineId": "D01"
                     }
                 ]
             }
         },
         {
-            "id": "D008",
+            "id": "D08",
             "recommendedSemester": 2,
             "name": "Fonética e Fonologia do Português II",
             "type": "Obrigatória",
@@ -142,7 +142,7 @@ const curriculumData = {
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D003"
+                        "disciplineId": "D03"
                     }
                 ]
             }
@@ -243,7 +243,7 @@ const curriculumData = {
             }
         },
         {
-            "id": "D014",
+            "id": "D14",
             "recommendedSemester": 3,
             "name": "Língua Inglesa III",
             "type": "Obrigatória",
@@ -259,7 +259,7 @@ const curriculumData = {
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D007"
+                        "disciplineId": "D07"
                     }
                 ]
             }
@@ -281,14 +281,14 @@ const curriculumData = {
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D002"
+                        "disciplineId": "D02"
                     }
                 ]
             }
         },
         {
-            "id": "D016",
-            "recommendedSemester": 2,
+            "id": "D16",
+            "recommendedSemester": 3,
             "name": "Língua Portuguesa – Morfossintaxe I",
             "type": "Obrigatória",
             "workload": 40,
@@ -303,7 +303,7 @@ const curriculumData = {
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D002"
+                        "disciplineId": "D02"
                     }
                 ]
             }
@@ -397,7 +397,7 @@ const curriculumData = {
             }
         },
         {
-            "id": "D021",
+            "id": "D21",
             "recommendedSemester": 4,
             "name": "Língua Inglesa IV",
             "type": "Obrigatória",
@@ -413,7 +413,7 @@ const curriculumData = {
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D014"
+                        "disciplineId": "D14"
                     }
                 ]
             }
@@ -463,8 +463,8 @@ const curriculumData = {
             }
         },
         {
-            "id": "D024",
-            "recommendedSemester": 3,
+            "id": "D24",
+            "recommendedSemester": 4,
             "name": "Língua Portuguesa – Morfossintaxe II",
             "type": "Obrigatória",
             "workload": 40,
@@ -479,7 +479,7 @@ const curriculumData = {
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D016"
+                        "disciplineId": "D16"
                     }
                 ]
             }
@@ -546,7 +546,7 @@ const curriculumData = {
             }
         },
         {
-            "id": "D028",
+            "id": "D28",
             "recommendedSemester": 5,
             "name": "Língua Inglesa V",
             "type": "Obrigatória",
@@ -562,14 +562,14 @@ const curriculumData = {
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D021"
+                        "disciplineId": "D21"
                     }
                 ]
             }
         },
         {
-            "id": "D029",
-            "recommendedSemester": 3,
+            "id": "D29",
+            "recommendedSemester": 5,
             "name": "Fonética e Fonologia do Inglês I",
             "type": "Obrigatória",
             "workload": 40,
@@ -584,7 +584,7 @@ const curriculumData = {
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D008"
+                        "disciplineId": "D08"
                     }
                 ]
             }
@@ -606,14 +606,14 @@ const curriculumData = {
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D014"
+                        "disciplineId": "D14"
                     }
                 ]
             }
         },
         {
-            "id": "D031",
-            "recommendedSemester": 4,
+            "id": "D31",
+            "recommendedSemester": 5,
             "name": "Língua Latina – Latim I",
             "type": "Obrigatória",
             "workload": 40,
@@ -628,7 +628,7 @@ const curriculumData = {
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D024"
+                        "disciplineId": "D24"
                     }
                 ]
             }
@@ -695,7 +695,7 @@ const curriculumData = {
             }
         },
         {
-            "id": "D035",
+            "id": "D35",
             "recommendedSemester": 6,
             "name": "Língua Inglesa VI",
             "type": "Obrigatória",
@@ -711,14 +711,14 @@ const curriculumData = {
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D028"
+                        "disciplineId": "D28"
                     }
                 ]
             }
         },
         {
-            "id": "D036",
-            "recommendedSemester": 4,
+            "id": "D36",
+            "recommendedSemester": 6,
             "name": "Fonética e Fonologia do Inglês II",
             "type": "Obrigatória",
             "workload": 40,
@@ -733,7 +733,7 @@ const curriculumData = {
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D029"
+                        "disciplineId": "D29"
                     }
                 ]
             }
@@ -755,14 +755,14 @@ const curriculumData = {
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D028"
+                        "disciplineId": "D28"
                     }
                 ]
             }
         },
         {
-            "id": "D038",
-            "recommendedSemester": 5,
+            "id": "D38",
+            "recommendedSemester": 6,
             "name": "Língua Latina – Latim II",
             "type": "Obrigatória",
             "workload": 40,
@@ -777,7 +777,7 @@ const curriculumData = {
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D031"
+                        "disciplineId": "D31"
                     }
                 ]
             }
@@ -844,8 +844,8 @@ const curriculumData = {
             }
         },
         {
-            "id": "D042",
-            "recommendedSemester": 6,
+            "id": "D42",
+            "recommendedSemester": 7,
             "name": "Tradução da Língua Inglesa",
             "type": "Obrigatória",
             "workload": 80,
@@ -866,8 +866,8 @@ const curriculumData = {
             }
         },
         {
-            "id": "D043",
-            "recommendedSemester": 5,
+            "id": "D43",
+            "recommendedSemester": 7,
             "name": "Morfossintaxe da Língua Inglesa",
             "type": "Obrigatória",
             "workload": 40,
@@ -882,7 +882,7 @@ const curriculumData = {
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D021"
+                        "disciplineId": "D21"
                     }
                 ]
             }
@@ -970,14 +970,14 @@ const curriculumData = {
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D035"
+                        "disciplineId": "D35"
                     }
                 ]
             }
         },
         {
-            "id": "D048",
-            "recommendedSemester": 7,
+            "id": "D48",
+            "recommendedSemester": 8,
             "name": "Literatura de Língua Inglesa I",
             "type": "Obrigatória",
             "workload": 40,
@@ -992,7 +992,7 @@ const curriculumData = {
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D035"
+                        "disciplineId": "D35"
                     }
                 ]
             }
@@ -1020,8 +1020,8 @@ const curriculumData = {
             }
         },
         {
-            "id": "D050",
-            "recommendedSemester": 5,
+            "id": "D50",
+            "recommendedSemester": 8,
             "name": "Linguística Aplicada",
             "type": "Obrigatória",
             "workload": 40,
@@ -1036,7 +1036,7 @@ const curriculumData = {
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D002"
+                        "disciplineId": "D02"
                     }
                 ]
             }
@@ -1058,7 +1058,7 @@ const curriculumData = {
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D002"
+                        "disciplineId": "D02"
                     }
                 ]
             }
@@ -1147,8 +1147,8 @@ const curriculumData = {
             }
         },
         {
-            "id": "D056",
-            "recommendedSemester": 8,
+            "id": "D56",
+            "recommendedSemester": 9,
             "name": "Literatura de Língua Inglesa II",
             "type": "Obrigatória",
             "workload": 40,
@@ -1163,7 +1163,7 @@ const curriculumData = {
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D048"
+                        "disciplineId": "D48"
                     }
                 ]
             }
@@ -1207,14 +1207,14 @@ const curriculumData = {
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D002"
+                        "disciplineId": "D02"
                     }
                 ]
             }
         },
         {
-            "id": "D059",
-            "recommendedSemester": 8,
+            "id": "D59",
+            "recommendedSemester": 9,
             "name": "Introdução ao Estudo de Libras",
             "type": "Obrigatória",
             "workload": 40,
@@ -1296,8 +1296,8 @@ const curriculumData = {
             }
         },
         {
-            "id": "D063",
-            "recommendedSemester": 9,
+            "id": "D63",
+            "recommendedSemester": 10,
             "name": "Literatura de Língua Inglesa III",
             "type": "Obrigatória",
             "workload": 40,
@@ -1312,7 +1312,7 @@ const curriculumData = {
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D056"
+                        "disciplineId": "D56"
                     }
                 ]
             }
@@ -1340,8 +1340,8 @@ const curriculumData = {
             }
         },
         {
-            "id": "D065",
-            "recommendedSemester": 7,
+            "id": "D65",
+            "recommendedSemester": 0,
             "name": "Módulo Avançado em Língua Inglesa",
             "type": "Optativa",
             "workload": 80,
@@ -1356,7 +1356,7 @@ const curriculumData = {
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D035"
+                        "disciplineId": "D35"
                     }
                 ]
             }
@@ -1434,7 +1434,7 @@ const curriculumData = {
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D002"
+                        "disciplineId": "D02"
                     }
                 ]
             }
@@ -1456,7 +1456,7 @@ const curriculumData = {
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D002"
+                        "disciplineId": "D02"
                     }
                 ]
             }
@@ -1495,7 +1495,7 @@ const curriculumData = {
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D002"
+                        "disciplineId": "D02"
                     }
                 ]
             }
@@ -1626,7 +1626,7 @@ const curriculumData = {
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D001"
+                        "disciplineId": "D01"
                     }
                 ]
             }
@@ -1648,7 +1648,7 @@ const curriculumData = {
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D007"
+                        "disciplineId": "D07"
                     }
                 ]
             }
@@ -1670,7 +1670,7 @@ const curriculumData = {
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D014"
+                        "disciplineId": "D14"
                     }
                 ]
             }
@@ -1692,7 +1692,7 @@ const curriculumData = {
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D021"
+                        "disciplineId": "D21"
                     }
                 ]
             }
