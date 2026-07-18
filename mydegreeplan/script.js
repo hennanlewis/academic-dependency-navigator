@@ -1,5 +1,6 @@
 let prereqMap = new Map()
 let unlocksMap = new Map()
+let pendingAction = null
 
 const STATUS = {
     NONE: null,
@@ -10,14 +11,78 @@ const STATUS = {
 
 const appState = {
     selected: new Set(),
-    status: new Map()
+    status: new Map(),
+    attempts: [],
+    semesterOverrides: new Map()
 }
 
-const statusMenu = document.getElementById("status-menu")
+function getAttempts(disciplineId) {
+    return appState.attempts.filter(
+        attempt => attempt.disciplineId === disciplineId
+    )
+}
+
+function getLatestAttempt(disciplineId) {
+    const attempts = getAttempts(disciplineId)
+
+    if (attempts.length === 0)
+        return null
+
+    return attempts.sort((a, b) => b.attempt - a.attempt)[0]
+}
+
+function getDisciplineById(id) {
+    return curriculumData.disciplines.find(
+        discipline => discipline.id === id
+    )
+}
+
+function hasCompletedDiscipline(disciplineId) {
+    return appState.attempts.some(
+        attempt =>
+            attempt.disciplineId === disciplineId &&
+            attempt.status === STATUS.COMPLETED
+    )
+}
+
+function getNextAttemptNumber(disciplineId) {
+    return getAttempts(disciplineId).length + 1
+}
+
+const statusMenu = document.querySelector("#status-menu")
+const semesterDialog = document.querySelector("#semester-dialog")
+const semesterConfirm = document.querySelector("#semester-confirm")
 let currentDisciplineId = null
+
+semesterConfirm.addEventListener("click", () => {
+    const valueElement = document.querySelector("#semester-select")
+
+    const semester = Number(valueElement.value)
+
+    if (pendingAction === "move-semester") {
+        moveDisciplineToSemester(currentDisciplineId, semester)
+
+    } else if (pendingAction === "new-attempt") {
+        createNewAttempt(currentDisciplineId, semester)
+    }
+
+    pendingAction = null
+    semesterDialog.hidePopover()
+    refreshUI()
+})
 
 function openStatusMenu(button, disciplineId) {
     currentDisciplineId = disciplineId
+
+    const moveButton = document.querySelector("#move-semester-btn")
+    const attemptButton = document.querySelector("#new-attempt-btn")
+    const currentStatus = appState.status.get(disciplineId)
+
+    if (currentStatus != STATUS.FAILED) {
+        attemptButton.style.display = "none"
+    } else {
+        attemptButton.style.display = "block"
+    }
 
     const rect = button.getBoundingClientRect()
 
@@ -43,7 +108,25 @@ function markPrerequisitesCompleted(disciplineId) {
 
 statusMenu.querySelectorAll("button").forEach(button => {
     button.addEventListener("click", () => {
-        if (!currentDisciplineId) return
+
+        if (!currentDisciplineId)
+            return
+
+        const action = button.dataset.action
+
+        if (action === "move-semester") {
+            pendingAction = "move-semester"
+            semesterDialog.showPopover()
+            closeStatusMenu()
+            return
+        }
+
+        if (action === "new-attempt") {
+            pendingAction = "new-attempt"
+            semesterDialog.showPopover()
+            closeStatusMenu()
+            return
+        }
 
         const status = button.dataset.status
 
@@ -61,12 +144,16 @@ statusMenu.querySelectorAll("button").forEach(button => {
                     }
                 })
             }
+
         } else {
             appState.status.delete(currentDisciplineId)
+            appState.semesterOverrides.delete(currentDisciplineId)
+
+            appState.attempts = appState.attempts
+                .filter(attempt => attempt.disciplineId !== currentDisciplineId)
         }
 
         closeStatusMenu()
-
         refreshUI()
     })
 })
@@ -79,10 +166,21 @@ document.addEventListener("click", event => {
 function getExpansionSources() {
     return [
         ...appState.selected,
-        ...[...appState.status]
-            .filter(([, status]) => status === STATUS.COMPLETED)
-            .map(([id]) => id)
+        ...curriculumData.disciplines
+            .filter(discipline => hasCompletedDiscipline(discipline.id))
+            .map(discipline => discipline.id)
     ]
+}
+
+function createNewAttempt(disciplineId, semester) {
+    appState.attempts.push({
+        disciplineId,
+        attempt: getNextAttemptNumber(disciplineId),
+        semester,
+        status: STATUS.CURRENT
+    })
+
+    refreshUI()
 }
 
 function hasPrerequisites(disciplineId) {
@@ -219,14 +317,52 @@ function groupBySemester() {
     const grouped = new Map()
 
     curriculumData.disciplines.forEach(discipline => {
-        let semester = discipline.recommendedSemester
+        const semester = appState.semesterOverrides.get(discipline.id)
+            ?? discipline.recommendedSemester
+
         if (!grouped.has(semester)) {
             grouped.set(semester, [])
         }
+
         grouped.get(semester).push(discipline)
     })
 
-    return new Map([...grouped.entries()].sort((a, b) => a[0] - b[0]))
+    appState.attempts.forEach(attempt => {
+        const discipline = getDisciplineById(attempt.disciplineId)
+
+        if (!discipline)
+            return
+
+        const copy = {
+            ...discipline,
+            id: `${discipline.id}-T${attempt.attempt}`,
+            originalId: discipline.id,
+            recommendedSemester: attempt.semester,
+            attemptNumber: attempt.attempt
+        }
+
+        if (!grouped.has(attempt.semester)) {
+            grouped.set(attempt.semester, [])
+        }
+
+        grouped.get(attempt.semester).push(copy)
+    })
+
+    return new Map(
+        [...grouped.entries()].sort((a, b) => a[0] - b[0])
+    )
+}
+
+function moveDisciplineToSemester(disciplineId, semester) {
+    appState.semesterOverrides.set(disciplineId, semester)
+}
+
+function createNewAttempt(disciplineId, semester) {
+    appState.attempts.push({
+        disciplineId,
+        attempt: getNextAttemptNumber(disciplineId),
+        semester
+    })
 }
 
 function getCardClass(state, relation) {
@@ -278,8 +414,8 @@ function buildCardViewModel(id) {
 
 function renderCurriculum() {
     const grouped = groupBySemester()
-    const container = document.getElementById('curriculum-container')
-    container.innerHTML = ''
+    const container = document.querySelector("#curriculum-container")
+    container.innerHTML = ""
 
     for (let [semester, disciplines] of grouped.entries()) {
         if (semester === 0) continue
@@ -290,19 +426,19 @@ function renderCurriculum() {
             return total + discipline.workload
         }, 0)
 
-        const section = document.createElement('div')
-        section.className = 'semester-section'
+        const section = document.createElement("div")
+        section.className = "semester-section"
 
-        const title = document.createElement('div')
-        title.className = 'semester-title'
+        const title = document.createElement("div")
+        title.className = "semester-title"
         title.innerHTML = `${semester}º Semestre <span class="total-workload">(${totalWorkload}h)</span>`
         section.appendChild(title)
 
-        const grid = document.createElement('div')
-        grid.className = 'grid'
+        const grid = document.createElement("div")
+        grid.className = "grid"
 
         disciplines.forEach(discipline => {
-            const card = document.createElement('div')
+            const card = document.createElement("div")
             const vm = buildCardViewModel(discipline.id)
 
             card.className = vm.classes.join(" ")
@@ -323,7 +459,7 @@ function renderCurriculum() {
                 <h3>${discipline.name} (${discipline.workload}${discipline.workload_unit})</h3>
                 <!--<p>📚 ${discipline.type}</p>
                 <div class="workload">
-                ${discipline.prerequisites && discipline.prerequisites.items.length > 0 ? '🔗 Tem pré-requisitos' : '✅ Sem pré-requisitos'}
+                ${discipline.prerequisites && discipline.prerequisites.items.length > 0 ? "🔗 Tem pré-requisitos" : "✅ Sem pré-requisitos"}
                 </div>-->
                 <button class="card-menu-btn">Estado</button>
             `
@@ -410,7 +546,8 @@ function saveState() {
         "curriculum-state-mydegreeplan",
         JSON.stringify({
             selected: [...appState.selected],
-            status: [...appState.status]
+            status: [...appState.status],
+            attempts: appState.attempts
         })
     )
 }
@@ -424,6 +561,7 @@ function loadState() {
 
     appState.selected = new Set(data.selected)
     appState.status = new Map(data.status)
+    appState.attempts = data.attempts ?? []
 }
 
 function refreshUI() {
