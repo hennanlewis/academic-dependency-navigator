@@ -547,7 +547,8 @@ function saveState() {
         JSON.stringify({
             selected: [...appState.selected],
             status: [...appState.status],
-            attempts: appState.attempts
+            attempts: appState.attempts,
+            semesterOverrides: [...appState.semesterOverrides]
         })
     )
 }
@@ -560,8 +561,9 @@ function loadState() {
     const data = JSON.parse(saved)
 
     appState.selected = new Set(data.selected)
-    appState.status = new Map(data.status)
+    appState.status = new Map(data.status ?? [])
     appState.attempts = data.attempts ?? []
+    appState.semesterOverrides = new Map(data.semesterOverrides ?? [])
 }
 
 function refreshUI() {
