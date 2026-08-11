@@ -1,0 +1,149 @@
+:root {
+  --font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --font-size-display-lg: 48px;
+  --font-size-headline-lg: 32px;
+  --font-size-headline-md: 24px;
+  --font-size-body-lg: 18px;
+  --font-size-body-md: 16px;
+  --font-size-label-md: 14px;
+  --font-size-label-sm: 12px;
+
+  --line-height-display-lg: 1.2;
+  --line-height-headline-lg: 1.3;
+  --line-height-headline-md: 1.4;
+  --line-height-body-md: 1.6;
+  --line-height-label-md: 1.4;
+  --line-height-label-sm: 1.2;
+
+  --font-weight-display-lg: 700;
+  --font-weight-headline-lg: 600;
+  --font-weight-headline-md: 600;
+  --font-weight-body-md: 400;
+  --font-weight-label-md: 500;
+  --font-weight-label-sm: 600;
+
+  --letter-spacing-display-lg: -0.02em;
+  --letter-spacing-headline-lg: -0.01em;
+
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-full: 9999px;
+
+  --container-max: 1280px;
+  --gutter: 24px;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+  --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.18);
+
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+
+  --status-approved: #10b981;
+  --status-current: #f59e0b;
+  --status-failed: #ef4444;
+
+  --rel-selected: #10b981;
+  --rel-prerequisite: #3b82f6;
+  --rel-unlocks: #a855f7;
+}
+
+/* ============================================================
+   Tema claro
+   ============================================================ */
+html[data-theme='light'] {
+  --primary: #1f3a5f;
+  --on-primary: #ffffff;
+  --primary-container: #d6e3ff;
+  --on-primary-container: #12315c;
+  --primary-fixed-dim: #bec6e0;
+
+  --secondary: #006c49;
+  --on-secondary: #ffffff;
+  --secondary-container: #6cf8bb;
+  --on-secondary-container: #00714d;
+
+  --tertiary: #000000;
+  --on-tertiary: #ffffff;
+
+  --error: #ba1a1a;
+  --on-error: #ffffff;
+  --error-container: #ffdad6;
+  --on-error-container: #93000a;
+
+  --background: #f8f9ff;
+  --on-background: #0b1c30;
+  --surface: #f8f9ff;
+  --surface-bright: #f8f9ff;
+  --surface-dim: #cbdbf5;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #eff4ff;
+  --surface-container: #e5eeff;
+  --surface-container-high: #dce9ff;
+  --surface-container-highest: #d3e4fe;
+  --on-surface: #0b1c30;
+  --on-surface-variant: #45464d;
+
+  --outline: #76777d;
+  --outline-variant: #c6c6cd;
+
+  --glow-selected: rgba(16, 185, 129, 0.6);
+  --glow-prerequisite: rgba(59, 130, 246, 0.5);
+  --glow-unlocks: rgba(168, 85, 247, 0.5);
+
+  color-scheme: light;
+}
+
+/* ============================================================
+   Tema escuro
+   ============================================================ */
+html[data-theme='dark'] {
+  --primary: #bec6e0;
+  --on-primary: #2a3347;
+  --primary-container: #3f465c;
+  --on-primary-container: #dae2fd;
+  --primary-fixed-dim: #bec6e0;
+
+  --secondary: #4edea3;
+  --on-secondary: #003821;
+  --secondary-container: #006c49;
+  --on-secondary-container: #6cf8bb;
+
+  --tertiary: #000000;
+  --on-tertiary: #ffffff;
+
+  --error: #ffb4ab;
+  --on-error: #690005;
+  --error-container: #93000a;
+  --on-error-container: #ffdad6;
+
+  --background: #0b1c30;
+  --on-background: #eaf1ff;
+  --surface: #131c2b;
+  --surface-bright: #394250;
+  --surface-dim: #0e1623;
+  --surface-container-lowest: #0e1623;
+  --surface-container-low: #1b2534;
+  --surface-container: #1f2a3a;
+  --surface-container-high: #2a3445;
+  --surface-container-highest: #35404f;
+  --on-surface: #eaf1ff;
+  --on-surface-variant: #c4c6d0;
+
+  --outline: #8f93a2;
+  --outline-variant: #45464d;
+
+  --glow-selected: rgba(16, 185, 129, 0.5);
+  --glow-prerequisite: rgba(59, 130, 246, 0.45);
+  --glow-unlocks: rgba(168, 85, 247, 0.45);
+
+  color-scheme: dark;
+}
