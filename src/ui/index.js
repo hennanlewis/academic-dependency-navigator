@@ -1,14 +1,21 @@
 // ============================================================
-// index.js — Bootstrap (Fase 0)
-// Carrega os dados, normaliza, valida e renderiza os metadados
-// do curso + status da validação. A grade real chega na Fase 1.
+// index.js — Bootstrap.
+// Fase 0/1: carrega, normaliza, valida e renderiza a grade.
+// Fase 2: cria o store, restaura a seleção salva, conecta a
+// interação de seleção, renderiza a legenda e aplica os destaques.
 // ============================================================
 
 import { curriculumData, curriculumMeta } from '../../data/curriculum-letras.js';
 import { normalizeCurriculum } from '../domain/curriculum.js';
 import { validateCurriculum } from '../domain/validators/curriculum-validator.js';
 import { buildGraph } from '../domain/graph-builder.js';
+import { createStore } from '../state/store.js';
+import { deriveSelection, classifyCard, RELATION } from '../state/selectors.js';
+import { loadState, saveState } from '../state/store-persistence.js';
 import { renderBoard } from './render/board.js';
+import { applySelectionToBoard } from './render/card.js';
+import { renderLegend } from './render/legend.js';
+import { setupSelection } from './interactions/selection.js';
 
 const THEME_KEY = 'adn.theme';
 
@@ -38,7 +45,7 @@ function renderMeta(curriculum) {
   el.textContent = [meta.curso, meta.instituicao, meta.versao].filter(Boolean).join(' — ');
 }
 
-function renderStats(curriculum, validation) {
+function renderStats(curriculum) {
   const el = document.getElementById('course-stats');
   if (!el) return;
   const total = curriculum.disciplines.length;
@@ -91,14 +98,42 @@ function main() {
 
   const validation = validateCurriculum(curriculum);
   renderMeta(curriculum);
-  renderStats(curriculum, validation);
+  renderStats(curriculum);
   renderValidation(validation);
 
   const graph = buildGraph(curriculum);
-  window.__adnGraph = graph; // exposto para Fases seguintes (debug/inspeção)
-
   const board = document.getElementById('board');
+  const legend = document.getElementById('legend');
+
   if (board) renderBoard(board, curriculum);
+  if (legend) renderLegend(legend);
+
+  // Restaura a seleção salva (persistência da Fase 2).
+  const saved = loadState();
+  let restored = new Set();
+  if (saved && board) {
+    restored = new Set([...saved.selected].filter((id) => graph.hasDiscipline(id)));
+  }
+  const store = createStore({ selected: restored });
+
+  // Assinatura: a cada mudança relevante, re-deriva e aplica destaque.
+  const applySelection = () => {
+    const state = store.getState();
+    const sel = deriveSelection(graph, state);
+    if (board) applySelectionToBoard(board, sel, sel.selected.size > 0);
+    if (legend) renderLegend(legend);
+    saveState(state);
+  };
+
+  store.subscribe(applySelection);
+  applySelection();
+
+  if (board) setupSelection({ board, store });
+
+  window.__adnStore = store;
+  window.__adnGraph = graph;
+  window.__adnRELATION = RELATION;
+  window.__adnClassify = classifyCard;
 }
 
 document.addEventListener('DOMContentLoaded', main);
