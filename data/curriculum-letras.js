@@ -9,7 +9,7 @@ export const curriculumData =
     "total_disciplines": 81,
     "disciplines": [
         {
-            "id": "D01",
+            "id": "LL01",
             "recommendedSemester": 1,
             "name": "Língua Inglesa I",
             "type": "Obrigatória",
@@ -17,20 +17,16 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
                 "operator": "AND",
-                "items": [
-
-                ]
+                "items": []
             }
         },
         {
-            "id": "D02",
+            "id": "LL02",
             "recommendedSemester": 1,
             "name": "Introdução à Linguística",
             "type": "Obrigatória",
@@ -38,20 +34,16 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
                 "operator": "AND",
-                "items": [
-
-                ]
+                "items": []
             }
         },
         {
-            "id": "D03",
+            "id": "LL03",
             "recommendedSemester": 1,
             "name": "Fonética e Fonologia do Português I",
             "type": "Obrigatória",
@@ -59,20 +51,16 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
                 "operator": "AND",
-                "items": [
-
-                ]
+                "items": []
             }
         },
         {
-            "id": "D04",
+            "id": "LL04",
             "recommendedSemester": 1,
             "name": "Teoria da Literatura",
             "type": "Obrigatória",
@@ -80,20 +68,16 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
                 "operator": "AND",
-                "items": [
-
-                ]
+                "items": []
             }
         },
         {
-            "id": "D05",
+            "id": "LL05",
             "recommendedSemester": 1,
             "name": "História da Educação",
             "type": "Obrigatória",
@@ -101,20 +85,16 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
                 "operator": "AND",
-                "items": [
-
-                ]
+                "items": []
             }
         },
         {
-            "id": "D06",
+            "id": "LL06",
             "recommendedSemester": 1,
             "name": "Metodologia de Pesquisa",
             "type": "Obrigatória",
@@ -122,20 +102,16 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
                 "operator": "AND",
-                "items": [
-
-                ]
+                "items": []
             }
         },
         {
-            "id": "D07",
+            "id": "LL07",
             "recommendedSemester": 2,
             "name": "Língua Inglesa II",
             "type": "Obrigatória",
@@ -143,9 +119,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [2]
             },
             "prerequisites": {
                 "type": "group",
@@ -159,7 +133,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D08",
+            "id": "LL08",
             "recommendedSemester": 2,
             "name": "Fonética e Fonologia do Português II",
             "type": "Obrigatória",
@@ -167,9 +141,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [2]
             },
             "prerequisites": {
                 "type": "group",
@@ -183,7 +155,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D09",
+            "id": "LL09",
             "recommendedSemester": 2,
             "name": "Literatura Brasileira I",
             "type": "Obrigatória",
@@ -191,9 +163,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [2]
             },
             "prerequisites": {
                 "type": "group",
@@ -207,7 +177,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D10",
+            "id": "LL10",
             "recommendedSemester": 2,
             "name": "Literatura Portuguesa I",
             "type": "Obrigatória",
@@ -215,9 +185,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [2]
             },
             "prerequisites": {
                 "type": "group",
@@ -231,7 +199,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D11",
+            "id": "LL11",
             "recommendedSemester": 2,
             "name": "Educação Inclusiva",
             "type": "Obrigatória",
@@ -239,20 +207,16 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [2]
             },
             "prerequisites": {
                 "type": "group",
                 "operator": "AND",
-                "items": [
-
-                ]
+                "items": []
             }
         },
         {
-            "id": "D12",
+            "id": "LL12",
             "recommendedSemester": 2,
             "name": "Psicologia do Desenvolvimento",
             "type": "Obrigatória",
@@ -260,20 +224,16 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [2]
             },
             "prerequisites": {
                 "type": "group",
                 "operator": "AND",
-                "items": [
-
-                ]
+                "items": []
             }
         },
         {
-            "id": "D13",
+            "id": "LL13",
             "recommendedSemester": 2,
             "name": "Fundamentos Sociofilosóficos da Educação",
             "type": "Obrigatória",
@@ -281,20 +241,16 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [2]
             },
             "prerequisites": {
                 "type": "group",
                 "operator": "AND",
-                "items": [
-
-                ]
+                "items": []
             }
         },
         {
-            "id": "D14",
+            "id": "LL14",
             "recommendedSemester": 3,
             "name": "Língua Inglesa III",
             "type": "Obrigatória",
@@ -302,9 +258,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -318,7 +272,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D15",
+            "id": "LL15",
             "recommendedSemester": 3,
             "name": "Linguística Textual",
             "type": "Obrigatória",
@@ -326,9 +280,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -342,7 +294,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D16",
+            "id": "LL16",
             "recommendedSemester": 3,
             "name": "Língua Portuguesa – Morfossintaxe I",
             "type": "Obrigatória",
@@ -350,9 +302,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -366,7 +316,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D17",
+            "id": "LL17",
             "recommendedSemester": 3,
             "name": "Literatura Brasileira II",
             "type": "Obrigatória",
@@ -374,9 +324,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -390,7 +338,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D18",
+            "id": "LL18",
             "recommendedSemester": 3,
             "name": "Literatura Portuguesa II",
             "type": "Obrigatória",
@@ -398,9 +346,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -414,7 +360,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D19",
+            "id": "LL19",
             "recommendedSemester": 3,
             "name": "Psicologia da Aprendizagem",
             "type": "Obrigatória",
@@ -422,9 +368,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -438,7 +382,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D20",
+            "id": "LL20",
             "recommendedSemester": 3,
             "name": "Didática",
             "type": "Obrigatória",
@@ -446,9 +390,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -462,7 +404,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D21",
+            "id": "LL21",
             "recommendedSemester": 4,
             "name": "Língua Inglesa IV",
             "type": "Obrigatória",
@@ -470,9 +412,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [2]
             },
             "prerequisites": {
                 "type": "group",
@@ -486,7 +426,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D22",
+            "id": "LL22",
             "recommendedSemester": 4,
             "name": "Literatura Portuguesa III",
             "type": "Obrigatória",
@@ -494,9 +434,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [2]
             },
             "prerequisites": {
                 "type": "group",
@@ -510,7 +448,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D23",
+            "id": "LL23",
             "recommendedSemester": 4,
             "name": "Literatura Brasileira III",
             "type": "Obrigatória",
@@ -518,9 +456,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [2]
             },
             "prerequisites": {
                 "type": "group",
@@ -534,7 +470,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D24",
+            "id": "LL24",
             "recommendedSemester": 4,
             "name": "Língua Portuguesa – Morfossintaxe II",
             "type": "Obrigatória",
@@ -542,9 +478,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [2]
             },
             "prerequisites": {
                 "type": "group",
@@ -558,7 +492,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D25",
+            "id": "LL25",
             "recommendedSemester": 4,
             "name": "TICs aplicadas ao ensino",
             "type": "Obrigatória",
@@ -566,20 +500,16 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [2]
             },
             "prerequisites": {
                 "type": "group",
                 "operator": "AND",
-                "items": [
-
-                ]
+                "items": []
             }
         },
         {
-            "id": "D26",
+            "id": "LL26",
             "recommendedSemester": 4,
             "name": "Política e Gestão Educacional",
             "type": "Obrigatória",
@@ -587,9 +517,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [2]
             },
             "prerequisites": {
                 "type": "group",
@@ -603,7 +531,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D27",
+            "id": "LL27",
             "recommendedSemester": 4,
             "name": "Currículo e Práticas Educativas",
             "type": "Obrigatória",
@@ -611,9 +539,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [2]
             },
             "prerequisites": {
                 "type": "group",
@@ -627,7 +553,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D28",
+            "id": "LL28",
             "recommendedSemester": 5,
             "name": "Língua Inglesa V",
             "type": "Obrigatória",
@@ -635,9 +561,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -651,7 +575,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D29",
+            "id": "LL29",
             "recommendedSemester": 5,
             "name": "Fonética e Fonologia do Inglês I",
             "type": "Obrigatória",
@@ -659,9 +583,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -675,7 +597,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D30",
+            "id": "LL30",
             "recommendedSemester": 5,
             "name": "Teoria da Tradução",
             "type": "Obrigatória",
@@ -683,9 +605,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -699,7 +619,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D31",
+            "id": "LL31",
             "recommendedSemester": 5,
             "name": "Língua Latina – Latim I",
             "type": "Obrigatória",
@@ -707,9 +627,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -723,7 +641,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D32",
+            "id": "LL32",
             "recommendedSemester": 5,
             "name": "Literatura Brasileira IV",
             "type": "Obrigatória",
@@ -731,9 +649,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -747,7 +663,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D33",
+            "id": "LL33",
             "recommendedSemester": 5,
             "name": "Estágio Supervisionado I – Língua Portuguesa",
             "type": "Obrigatória",
@@ -755,9 +671,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -771,7 +685,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D34",
+            "id": "LL34",
             "recommendedSemester": 5,
             "name": "Projetos Sociais",
             "type": "Obrigatória",
@@ -779,20 +693,16 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
                 "operator": "AND",
-                "items": [
-
-                ]
+                "items": []
             }
         },
         {
-            "id": "D35",
+            "id": "LL35",
             "recommendedSemester": 6,
             "name": "Língua Inglesa VI",
             "type": "Obrigatória",
@@ -800,9 +710,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [2]
             },
             "prerequisites": {
                 "type": "group",
@@ -816,7 +724,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D36",
+            "id": "LL36",
             "recommendedSemester": 6,
             "name": "Fonética e Fonologia do Inglês II",
             "type": "Obrigatória",
@@ -824,9 +732,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [2]
             },
             "prerequisites": {
                 "type": "group",
@@ -840,7 +746,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D37",
+            "id": "LL37",
             "recommendedSemester": 6,
             "name": "Compreensão e análise de texto em L. Inglesa",
             "type": "Obrigatória",
@@ -848,9 +754,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [2]
             },
             "prerequisites": {
                 "type": "group",
@@ -864,7 +768,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D38",
+            "id": "LL38",
             "recommendedSemester": 6,
             "name": "Língua Latina – Latim II",
             "type": "Obrigatória",
@@ -872,9 +776,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [2]
             },
             "prerequisites": {
                 "type": "group",
@@ -888,7 +790,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D39",
+            "id": "LL39",
             "recommendedSemester": 6,
             "name": "História da Cultura Indígena e Afro-Brasileira",
             "type": "Obrigatória",
@@ -896,20 +798,16 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [2]
             },
             "prerequisites": {
                 "type": "group",
                 "operator": "AND",
-                "items": [
-
-                ]
+                "items": []
             }
         },
         {
-            "id": "D40",
+            "id": "LL40",
             "recommendedSemester": 6,
             "name": "Literatura Cearense",
             "type": "Obrigatória",
@@ -917,9 +815,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [2]
             },
             "prerequisites": {
                 "type": "group",
@@ -933,7 +829,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D41",
+            "id": "LL41",
             "recommendedSemester": 6,
             "name": "Estágio Supervisionado II – Língua Portuguesa",
             "type": "Obrigatória",
@@ -941,9 +837,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [2]
             },
             "prerequisites": {
                 "type": "group",
@@ -957,7 +851,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D42",
+            "id": "LL42",
             "recommendedSemester": 7,
             "name": "Tradução da Língua Inglesa",
             "type": "Obrigatória",
@@ -965,9 +859,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -981,7 +873,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D43",
+            "id": "LL43",
             "recommendedSemester": 7,
             "name": "Morfossintaxe da Língua Inglesa",
             "type": "Obrigatória",
@@ -989,9 +881,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -1005,7 +895,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D44",
+            "id": "LL44",
             "recommendedSemester": 7,
             "name": "Literatura Africana de Língua Portuguesa",
             "type": "Obrigatória",
@@ -1013,9 +903,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -1029,7 +917,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D45",
+            "id": "LL45",
             "recommendedSemester": 7,
             "name": "Pesquisa Científica",
             "type": "Obrigatória",
@@ -1037,9 +925,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -1053,7 +939,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D46",
+            "id": "LL46",
             "recommendedSemester": 7,
             "name": "Estágio Supervisionado III – Língua Portuguesa",
             "type": "Obrigatória",
@@ -1061,9 +947,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -1077,7 +961,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D47",
+            "id": "LL47",
             "recommendedSemester": 7,
             "name": "Estágio Supervisionado I – Língua Inglesa",
             "type": "Obrigatória",
@@ -1085,9 +969,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -1101,7 +983,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D48",
+            "id": "LL48",
             "recommendedSemester": 8,
             "name": "Literatura de Língua Inglesa I",
             "type": "Obrigatória",
@@ -1109,9 +991,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [2]
             },
             "prerequisites": {
                 "type": "group",
@@ -1125,7 +1005,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D49",
+            "id": "LL49",
             "recommendedSemester": 8,
             "name": "Literatura Comparada",
             "type": "Obrigatória",
@@ -1133,9 +1013,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [2]
             },
             "prerequisites": {
                 "type": "group",
@@ -1149,7 +1027,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D50",
+            "id": "LL50",
             "recommendedSemester": 8,
             "name": "Linguística Aplicada",
             "type": "Obrigatória",
@@ -1157,9 +1035,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [2]
             },
             "prerequisites": {
                 "type": "group",
@@ -1173,7 +1049,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D51",
+            "id": "LL51",
             "recommendedSemester": 8,
             "name": "Sociolinguística",
             "type": "Obrigatória",
@@ -1181,9 +1057,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [2]
             },
             "prerequisites": {
                 "type": "group",
@@ -1197,7 +1071,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D52",
+            "id": "LL52",
             "recommendedSemester": 8,
             "name": "Educação Popular",
             "type": "Obrigatória",
@@ -1205,20 +1079,16 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [2]
             },
             "prerequisites": {
                 "type": "group",
                 "operator": "AND",
-                "items": [
-
-                ]
+                "items": []
             }
         },
         {
-            "id": "D53",
+            "id": "LL53",
             "recommendedSemester": 8,
             "name": "Estágio Supervisionado IV – Língua Portuguesa",
             "type": "Obrigatória",
@@ -1226,9 +1096,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [2]
             },
             "prerequisites": {
                 "type": "group",
@@ -1242,7 +1110,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D54",
+            "id": "LL54",
             "recommendedSemester": 8,
             "name": "Estágio Supervisionado II – Língua Inglesa",
             "type": "Obrigatória",
@@ -1250,9 +1118,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [2]
             },
             "prerequisites": {
                 "type": "group",
@@ -1266,7 +1132,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D55",
+            "id": "LL55",
             "recommendedSemester": 8,
             "name": "Trabalho de Conclusão de Curso – TCC 1",
             "type": "Obrigatória",
@@ -1274,9 +1140,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [2]
             },
             "prerequisites": {
                 "type": "group",
@@ -1290,7 +1154,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D56",
+            "id": "LL56",
             "recommendedSemester": 9,
             "name": "Literatura de Língua Inglesa II",
             "type": "Obrigatória",
@@ -1298,9 +1162,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -1314,7 +1176,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D57",
+            "id": "LL57",
             "recommendedSemester": 9,
             "name": "Literatura Infanto-Juvenil",
             "type": "Obrigatória",
@@ -1322,9 +1184,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -1338,7 +1198,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D58",
+            "id": "LL58",
             "recommendedSemester": 9,
             "name": "Linguística (Cognitiva e Psicolinguística)",
             "type": "Obrigatória",
@@ -1346,9 +1206,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -1362,7 +1220,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D59",
+            "id": "LL59",
             "recommendedSemester": 9,
             "name": "Introdução ao Estudo de Libras",
             "type": "Obrigatória",
@@ -1370,20 +1228,16 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
                 "operator": "AND",
-                "items": [
-
-                ]
+                "items": []
             }
         },
         {
-            "id": "D60",
+            "id": "LL60",
             "recommendedSemester": 9,
             "name": "Estágio Supervisionado V – Língua Portuguesa",
             "type": "Obrigatória",
@@ -1391,9 +1245,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -1407,7 +1259,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D61",
+            "id": "LL61",
             "recommendedSemester": 9,
             "name": "Estágio Supervisionado III – Língua Inglesa",
             "type": "Obrigatória",
@@ -1415,9 +1267,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -1431,7 +1281,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D62",
+            "id": "LL62",
             "recommendedSemester": 9,
             "name": "Trabalho de Conclusão de Curso – TCC 2",
             "type": "Obrigatória",
@@ -1439,9 +1289,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -1455,7 +1303,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D63",
+            "id": "LL63",
             "recommendedSemester": 10,
             "name": "Literatura de Língua Inglesa III",
             "type": "Obrigatória",
@@ -1463,9 +1311,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [2]
             },
             "prerequisites": {
                 "type": "group",
@@ -1479,7 +1325,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D64",
+            "id": "LL64",
             "recommendedSemester": 10,
             "name": "Estágio Supervisionado IV – Língua Inglesa",
             "type": "Obrigatória",
@@ -1487,9 +1333,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [2]
             },
             "prerequisites": {
                 "type": "group",
@@ -1503,7 +1347,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D65",
+            "id": "LL65",
             "recommendedSemester": 0,
             "name": "Módulo Avançado em Língua Inglesa",
             "type": "Optativa",
@@ -1511,9 +1355,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -1527,7 +1369,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D66",
+            "id": "LL66",
             "recommendedSemester": 0,
             "name": "Cultura Inglesa I (EUA)",
             "type": "Optativa",
@@ -1535,20 +1377,16 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
                 "operator": "AND",
-                "items": [
-
-                ]
+                "items": []
             }
         },
         {
-            "id": "D67",
+            "id": "LL67",
             "recommendedSemester": 0,
             "name": "Cultura Inglesa II (Grã-Bretanha)",
             "type": "Optativa",
@@ -1556,20 +1394,16 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
                 "operator": "AND",
-                "items": [
-
-                ]
+                "items": []
             }
         },
         {
-            "id": "D68",
+            "id": "LL68",
             "recommendedSemester": 0,
             "name": "Teoria do Verso",
             "type": "Optativa",
@@ -1577,9 +1411,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -1593,7 +1425,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D69",
+            "id": "LL69",
             "recommendedSemester": 0,
             "name": "Semiótica",
             "type": "Optativa",
@@ -1601,9 +1433,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -1617,7 +1447,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D70",
+            "id": "LL70",
             "recommendedSemester": 0,
             "name": "Leitura e Produção de Textos Acadêmicos",
             "type": "Optativa",
@@ -1625,9 +1455,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -1641,7 +1469,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D71",
+            "id": "LL71",
             "recommendedSemester": 0,
             "name": "Leitura de Textos Acadêmicos em Espanhol",
             "type": "Optativa",
@@ -1649,20 +1477,16 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
                 "operator": "AND",
-                "items": [
-
-                ]
+                "items": []
             }
         },
         {
-            "id": "D72",
+            "id": "LL72",
             "recommendedSemester": 0,
             "name": "Estilística",
             "type": "Optativa",
@@ -1670,9 +1494,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -1686,7 +1508,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D73",
+            "id": "LL73",
             "recommendedSemester": 0,
             "name": "Educação Física",
             "type": "Optativa",
@@ -1694,20 +1516,16 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
                 "operator": "AND",
-                "items": [
-
-                ]
+                "items": []
             }
         },
         {
-            "id": "D74",
+            "id": "LL74",
             "recommendedSemester": 0,
             "name": "Gestão Escolar",
             "type": "Optativa",
@@ -1715,9 +1533,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -1735,7 +1551,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D75",
+            "id": "LL75",
             "recommendedSemester": 0,
             "name": "Introdução à EAD",
             "type": "Optativa",
@@ -1743,9 +1559,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -1759,7 +1573,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D76",
+            "id": "LL76",
             "recommendedSemester": 0,
             "name": "Educação Profissional no Brasil",
             "type": "Optativa",
@@ -1767,9 +1581,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -1783,7 +1595,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D77",
+            "id": "LL77",
             "recommendedSemester": 0,
             "name": "Educação de Jovens e Adultos (EJA)",
             "type": "Optativa",
@@ -1791,9 +1603,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -1807,7 +1617,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D78",
+            "id": "LL78",
             "recommendedSemester": 0,
             "name": "Gramática da Língua Inglesa I",
             "type": "Complementar",
@@ -1815,9 +1625,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -1831,7 +1639,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D79",
+            "id": "LL79",
             "recommendedSemester": 0,
             "name": "Gramática da Língua Inglesa II",
             "type": "Complementar",
@@ -1839,9 +1647,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -1855,7 +1661,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D80",
+            "id": "LL80",
             "recommendedSemester": 0,
             "name": "Gramática da Língua Inglesa III",
             "type": "Complementar",
@@ -1863,9 +1669,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
@@ -1879,7 +1683,7 @@ export const curriculumData =
             }
         },
         {
-            "id": "D81",
+            "id": "LL81",
             "recommendedSemester": 0,
             "name": "Gramática da Língua Inglesa IV",
             "type": "Complementar",
@@ -1887,9 +1691,7 @@ export const curriculumData =
             "workload_unit": "h",
             "offering": {
                 "frequency": "annual",
-                "periods": [
-                    1
-                ]
+                "periods": [1]
             },
             "prerequisites": {
                 "type": "group",
