@@ -124,7 +124,6 @@
   gap: var(--space-sm);
 }
 
-/* --- Cartão de disciplina --- */
 .card-disc {
   background-color: var(--surface-bright);
   border: 1px solid var(--outline-variant);
@@ -136,6 +135,93 @@
 
 .card-disc:hover {
   box-shadow: var(--shadow-md);
+}
+
+.card-disc[data-rel='selected'] {
+  border-color: var(--rel-selected);
+  border-left-color: var(--rel-selected);
+  box-shadow: 0 0 0 1px var(--rel-selected), 0 0 12px var(--glow-selected);
+}
+
+.card-disc[data-rel='prerequisite'] {
+  border-left-color: var(--rel-prerequisite);
+  box-shadow: 0 0 0 1px var(--rel-prerequisite), 0 0 8px var(--glow-prerequisite);
+}
+
+.card-disc[data-rel='unlocks'] {
+  border-left-color: var(--rel-unlocks);
+  box-shadow: 0 0 0 1px var(--rel-unlocks), 0 0 8px var(--glow-unlocks);
+}
+
+.card-disc[data-rel='unrelated'] {
+  opacity: 0.45;
+  filter: saturate(0.4);
+}
+
+.legend-wrap {
+  margin-bottom: var(--space-md);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm) var(--space-md);
+  background-color: var(--surface-container-lowest);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+}
+
+.legend-title {
+  font-size: var(--font-size-label-md);
+  font-weight: var(--font-weight-label-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--on-surface-variant);
+}
+
+.legend-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-md);
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--outline-variant);
+}
+
+.legend-swatch--selected {
+  background-color: var(--rel-selected);
+  box-shadow: 0 0 6px var(--glow-selected);
+}
+
+.legend-swatch--prerequisite {
+  background-color: var(--rel-prerequisite);
+  box-shadow: 0 0 6px var(--glow-prerequisite);
+}
+
+.legend-swatch--unlocks {
+  background-color: var(--rel-unlocks);
+  box-shadow: 0 0 6px var(--glow-unlocks);
+}
+
+.legend-swatch--unrelated {
+  background-color: var(--outline-variant);
+}
+
+.legend-label {
+  font-size: var(--font-size-label-sm);
+  color: var(--on-surface-variant);
 }
 
 .card-disc-header {
@@ -176,10 +262,6 @@
   color: var(--on-surface-variant);
 }
 
-/* --- Tipos de cartão (borda por tipo) --- */
 .card-disc[data-type='Obrigatória'] { border-left-color: var(--primary); }
 .card-disc[data-type='Optativa'] { border-left-color: var(--secondary); }
 .card-disc[data-type='Complementar'] { border-left-color: var(--outline); }
-
-/* Nota: colunas permanecem lado a lado mesmo em telas estreitas,
-   navegando por scroll horizontal, para acesso rápido ao fim do curso. */
