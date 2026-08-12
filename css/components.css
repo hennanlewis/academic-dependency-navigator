@@ -64,3 +64,122 @@
 .card .label-md {
   margin-bottom: var(--space-sm);
 }
+
+/* --- Board (grade por semestre) --- */
+.board-wrap {
+  margin-top: var(--space-lg);
+}
+
+.board {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(260px, 1fr);
+  gap: var(--space-lg);
+  align-items: start;
+  overflow-x: auto;
+  padding-bottom: var(--space-md);
+}
+
+/* --- Coluna de semestre --- */
+.semester-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  background-color: var(--surface-container-lowest);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+}
+
+.semester-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  border-bottom: 1px solid var(--outline-variant);
+  padding-bottom: var(--space-sm);
+}
+
+.semester-title {
+  font-size: var(--font-size-label-md);
+  font-weight: var(--font-weight-label-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--primary);
+}
+
+.semester-total {
+  font-size: var(--font-size-label-sm);
+  font-weight: var(--font-weight-label-sm);
+  color: var(--on-surface-variant);
+  background-color: var(--surface-container);
+  border-radius: var(--radius-full);
+  padding: 2px var(--space-sm);
+  white-space: nowrap;
+}
+
+.semester-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/* --- Cartão de disciplina --- */
+.card-disc {
+  background-color: var(--surface-bright);
+  border: 1px solid var(--outline-variant);
+  border-left: 4px solid var(--outline);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm) var(--space-md);
+  transition: box-shadow var(--transition-fast), transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.card-disc:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.card-disc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xs);
+}
+
+.card-disc-code {
+  font-size: var(--font-size-label-sm);
+  font-weight: var(--font-weight-label-sm);
+  color: var(--on-surface-variant);
+}
+
+.card-disc-badge {
+  font-size: var(--font-size-label-sm);
+  font-weight: var(--font-weight-label-sm);
+  color: var(--on-surface-variant);
+  background-color: var(--surface-container);
+  border-radius: var(--radius-full);
+  padding: 1px var(--space-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.card-disc-name {
+  font-size: var(--font-size-body-md);
+  font-weight: var(--font-weight-headline-md);
+  line-height: var(--line-height-headline-md);
+  color: var(--on-surface);
+  margin-bottom: var(--space-xs);
+}
+
+.card-disc-meta {
+  font-size: var(--font-size-label-sm);
+  color: var(--on-surface-variant);
+}
+
+/* --- Tipos de cartão (borda por tipo) --- */
+.card-disc[data-type='Obrigatória'] { border-left-color: var(--primary); }
+.card-disc[data-type='Optativa'] { border-left-color: var(--secondary); }
+.card-disc[data-type='Complementar'] { border-left-color: var(--outline); }
+
+/* Nota: colunas permanecem lado a lado mesmo em telas estreitas,
+   navegando por scroll horizontal, para acesso rápido ao fim do curso. */
