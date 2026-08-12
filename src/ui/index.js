@@ -7,6 +7,8 @@
 import { curriculumData, curriculumMeta } from '../../data/curriculum-letras.js';
 import { normalizeCurriculum } from '../domain/curriculum.js';
 import { validateCurriculum } from '../domain/validators/curriculum-validator.js';
+import { buildGraph } from '../domain/graph-builder.js';
+import { renderBoard } from './render/board.js';
 
 const THEME_KEY = 'adn.theme';
 
@@ -91,6 +93,12 @@ function main() {
   renderMeta(curriculum);
   renderStats(curriculum, validation);
   renderValidation(validation);
+
+  const graph = buildGraph(curriculum);
+  window.__adnGraph = graph; // exposto para Fases seguintes (debug/inspeção)
+
+  const board = document.getElementById('board');
+  if (board) renderBoard(board, curriculum);
 }
 
 document.addEventListener('DOMContentLoaded', main);
