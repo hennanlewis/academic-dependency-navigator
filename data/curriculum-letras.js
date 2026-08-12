@@ -127,7 +127,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D01"
+                        "disciplineId": "LL01"
                     }
                 ]
             }
@@ -149,7 +149,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D03"
+                        "disciplineId": "LL03"
                     }
                 ]
             }
@@ -171,7 +171,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D04"
+                        "disciplineId": "LL04"
                     }
                 ]
             }
@@ -193,7 +193,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D04"
+                        "disciplineId": "LL04"
                     }
                 ]
             }
@@ -266,7 +266,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D07"
+                        "disciplineId": "LL07"
                     }
                 ]
             }
@@ -288,7 +288,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D02"
+                        "disciplineId": "LL02"
                     }
                 ]
             }
@@ -310,7 +310,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D02"
+                        "disciplineId": "LL02"
                     }
                 ]
             }
@@ -332,7 +332,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D09"
+                        "disciplineId": "LL09"
                     }
                 ]
             }
@@ -354,7 +354,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D10"
+                        "disciplineId": "LL10"
                     }
                 ]
             }
@@ -376,7 +376,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D12"
+                        "disciplineId": "LL12"
                     }
                 ]
             }
@@ -398,7 +398,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D13"
+                        "disciplineId": "LL13"
                     }
                 ]
             }
@@ -420,7 +420,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D14"
+                        "disciplineId": "LL14"
                     }
                 ]
             }
@@ -442,7 +442,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D18"
+                        "disciplineId": "LL18"
                     }
                 ]
             }
@@ -464,7 +464,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D17"
+                        "disciplineId": "LL17"
                     }
                 ]
             }
@@ -486,7 +486,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D16"
+                        "disciplineId": "LL16"
                     }
                 ]
             }
@@ -525,7 +525,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D13"
+                        "disciplineId": "LL13"
                     }
                 ]
             }
@@ -547,7 +547,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D13"
+                        "disciplineId": "LL13"
                     }
                 ]
             }
@@ -569,7 +569,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D21"
+                        "disciplineId": "LL21"
                     }
                 ]
             }
@@ -591,7 +591,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D08"
+                        "disciplineId": "LL08"
                     }
                 ]
             }
@@ -613,7 +613,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D14"
+                        "disciplineId": "LL14"
                     }
                 ]
             }
@@ -635,7 +635,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D24"
+                        "disciplineId": "LL24"
                     }
                 ]
             }
@@ -657,7 +657,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D23"
+                        "disciplineId": "LL23"
                     }
                 ]
             }
@@ -679,7 +679,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D20"
+                        "disciplineId": "LL20"
                     }
                 ]
             }
@@ -718,7 +718,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D28"
+                        "disciplineId": "LL28"
                     }
                 ]
             }
@@ -740,7 +740,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D29"
+                        "disciplineId": "LL29"
                     }
                 ]
             }
@@ -762,7 +762,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D28"
+                        "disciplineId": "LL28"
                     }
                 ]
             }
@@ -784,7 +784,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D31"
+                        "disciplineId": "LL31"
                     }
                 ]
             }
@@ -823,7 +823,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D04"
+                        "disciplineId": "LL04"
                     }
                 ]
             }
@@ -845,7 +845,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D33"
+                        "disciplineId": "LL33"
                     }
                 ]
             }
@@ -867,7 +867,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D35"
+                        "disciplineId": "LL35"
                     }
                 ]
             }
@@ -889,7 +889,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D21"
+                        "disciplineId": "LL21"
                     }
                 ]
             }
@@ -911,7 +911,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D04"
+                        "disciplineId": "LL04"
                     }
                 ]
             }
@@ -933,7 +933,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D06"
+                        "disciplineId": "LL06"
                     }
                 ]
             }
@@ -955,7 +955,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D41"
+                        "disciplineId": "LL41"
                     }
                 ]
             }
@@ -977,7 +977,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D35"
+                        "disciplineId": "LL35"
                     }
                 ]
             }
@@ -999,7 +999,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D35"
+                        "disciplineId": "LL35"
                     }
                 ]
             }
@@ -1021,7 +1021,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D04"
+                        "disciplineId": "LL04"
                     }
                 ]
             }
@@ -1043,7 +1043,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D02"
+                        "disciplineId": "LL02"
                     }
                 ]
             }
@@ -1065,7 +1065,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D02"
+                        "disciplineId": "LL02"
                     }
                 ]
             }
@@ -1104,7 +1104,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D46"
+                        "disciplineId": "LL46"
                     }
                 ]
             }
@@ -1126,7 +1126,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D47"
+                        "disciplineId": "LL47"
                     }
                 ]
             }
@@ -1148,7 +1148,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D45"
+                        "disciplineId": "LL45"
                     }
                 ]
             }
@@ -1170,7 +1170,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D35"
+                        "disciplineId": "LL35"
                     }
                 ]
             }
@@ -1192,7 +1192,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D04"
+                        "disciplineId": "LL04"
                     }
                 ]
             }
@@ -1214,7 +1214,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D02"
+                        "disciplineId": "LL02"
                     }
                 ]
             }
@@ -1253,7 +1253,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D53"
+                        "disciplineId": "LL53"
                     }
                 ]
             }
@@ -1275,7 +1275,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D54"
+                        "disciplineId": "LL54"
                     }
                 ]
             }
@@ -1297,7 +1297,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D55"
+                        "disciplineId": "LL55"
                     }
                 ]
             }
@@ -1319,7 +1319,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D35"
+                        "disciplineId": "LL35"
                     }
                 ]
             }
@@ -1341,7 +1341,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D62"
+                        "disciplineId": "LL62"
                     }
                 ]
             }
@@ -1363,7 +1363,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D35"
+                        "disciplineId": "LL35"
                     }
                 ]
             }
@@ -1419,7 +1419,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D04"
+                        "disciplineId": "LL04"
                     }
                 ]
             }
@@ -1441,7 +1441,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D02"
+                        "disciplineId": "LL02"
                     }
                 ]
             }
@@ -1463,7 +1463,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D02"
+                        "disciplineId": "LL02"
                     }
                 ]
             }
@@ -1502,7 +1502,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D02"
+                        "disciplineId": "LL02"
                     }
                 ]
             }
@@ -1541,11 +1541,11 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D13"
+                        "disciplineId": "LL13"
                     },
                     {
                         "type": "discipline",
-                        "disciplineId": "D26"
+                        "disciplineId": "LL26"
                     }
                 ]
             }
@@ -1567,7 +1567,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D27"
+                        "disciplineId": "LL27"
                     }
                 ]
             }
@@ -1589,7 +1589,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D27"
+                        "disciplineId": "LL27"
                     }
                 ]
             }
@@ -1611,7 +1611,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D27"
+                        "disciplineId": "LL27"
                     }
                 ]
             }
@@ -1633,7 +1633,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D01"
+                        "disciplineId": "LL01"
                     }
                 ]
             }
@@ -1655,7 +1655,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D07"
+                        "disciplineId": "LL07"
                     }
                 ]
             }
@@ -1677,7 +1677,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D14"
+                        "disciplineId": "LL14"
                     }
                 ]
             }
@@ -1699,7 +1699,7 @@ export const curriculumData =
                 "items": [
                     {
                         "type": "discipline",
-                        "disciplineId": "D21"
+                        "disciplineId": "LL21"
                     }
                 ]
             }
