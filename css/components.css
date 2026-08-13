@@ -369,13 +369,13 @@
 }
 
 .card-disc[data-status='completed'] {
-  background-color: color-mix(in srgb, var(--status-approved) 10%, var(--surface-bright));
+  background-color: color-mix(in srgb, var(--status-approved) 25%, var(--surface-bright));
 }
 .card-disc[data-status='current'] {
-  background-color: color-mix(in srgb, var(--status-current) 10%, var(--surface-bright));
+  background-color: color-mix(in srgb, var(--status-current) 25%, var(--surface-bright));
 }
 .card-disc[data-status='failed'] {
-  background-color: color-mix(in srgb, var(--status-failed) 10%, var(--surface-bright));
+  background-color: color-mix(in srgb, var(--status-failed) 25%, var(--surface-bright));
 }
 
 .card-disc-name {
@@ -392,9 +392,32 @@
   color: var(--on-surface-variant);
 }
 
+.card-disc-available {
+  display: none;
+  margin-top: var(--space-sm);
+  font-size: var(--font-size-label-sm);
+  font-weight: var(--font-weight-label-sm);
+  color: var(--on-secondary-container);
+  background-color: var(--secondary-container);
+  border-radius: var(--radius-full);
+  padding: 2px var(--space-sm);
+}
+
+.card-disc-available:not([hidden]) {
+  display: inline-block;
+}
+
 .card-disc[data-type='Obrigatória'] { border-left-color: var(--primary); }
-.card-disc[data-type='Optativa'] { border-left-color: var(--secondary); }
+.card-disc[data-type='Optativa'] { border-left-color: var(--outline); }
 .card-disc[data-type='Complementar'] { border-left-color: var(--outline); }
+
+.card-disc[data-available='true'] {
+  border-left-color: var(--status-approved);
+}
+
+.card-disc[data-status='completed'] {
+  border-left-color: var(--status-approved);
+}
 
 .modal-overlay {
   position: fixed;
