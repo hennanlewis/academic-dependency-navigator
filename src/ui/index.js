@@ -10,9 +10,9 @@ import { normalizeCurriculum } from '../domain/curriculum.js';
 import { validateCurriculum } from '../domain/validators/curriculum-validator.js';
 import { buildGraph } from '../domain/graph-builder.js';
 import { createStore } from '../state/store.js';
-import { deriveSelection, classifyCard, RELATION } from '../state/selectors.js';
+import { deriveSelection, deriveAvailable, classifyCard, RELATION } from '../state/selectors.js';
 import { loadState, saveState } from '../state/store-persistence.js';
-import { applySelectionToBoard, applyStatusesToBoard } from './render/card.js';
+import { applySelectionToBoard, applyStatusesToBoard, applyAvailabilityToBoard } from './render/card.js';
 import { renderBoard } from './render/board.js';
 import { renderLegend } from './render/legend.js';
 import { setupSelection } from './interactions/selection.js';
@@ -130,6 +130,7 @@ function main() {
     if (board) {
       applySelectionToBoard(board, sel, sel.selected.size > 0);
       applyStatusesToBoard(board, state.status);
+      applyAvailabilityToBoard(board, deriveAvailable(graph, state.status));
     }
     if (legend) renderLegend(legend);
     saveState(state);
