@@ -12,10 +12,11 @@ import { buildGraph } from '../domain/graph-builder.js';
 import { createStore } from '../state/store.js';
 import { deriveSelection, classifyCard, RELATION } from '../state/selectors.js';
 import { loadState, saveState } from '../state/store-persistence.js';
+import { applySelectionToBoard, applyStatusesToBoard } from './render/card.js';
 import { renderBoard } from './render/board.js';
-import { applySelectionToBoard } from './render/card.js';
 import { renderLegend } from './render/legend.js';
 import { setupSelection } from './interactions/selection.js';
+import { setupStatusEditor } from './interactions/status-editor.js';
 
 const THEME_KEY = 'adn.theme';
 
@@ -108,19 +109,28 @@ function main() {
   if (board) renderBoard(board, curriculum);
   if (legend) renderLegend(legend);
 
-  // Restaura a seleção salva (persistência da Fase 2).
+  // Restaura seleção e status salvos (Fases 2 e 3).
   const saved = loadState();
-  let restored = new Set();
-  if (saved && board) {
-    restored = new Set([...saved.selected].filter((id) => graph.hasDiscipline(id)));
-  }
-  const store = createStore({ selected: restored });
+  const restored = new Set(
+    saved && saved.selected
+      ? [...saved.selected].filter((id) => graph.hasDiscipline(id))
+      : []
+  );
+  const restoredStatus = new Map(
+    saved && saved.status
+      ? [...saved.status].filter(([id]) => graph.hasDiscipline(id))
+      : []
+  );
+  const store = createStore({ selected: restored, status: restoredStatus });
 
   // Assinatura: a cada mudança relevante, re-deriva e aplica destaque.
   const applySelection = () => {
     const state = store.getState();
     const sel = deriveSelection(graph, state);
-    if (board) applySelectionToBoard(board, sel, sel.selected.size > 0);
+    if (board) {
+      applySelectionToBoard(board, sel, sel.selected.size > 0);
+      applyStatusesToBoard(board, state.status);
+    }
     if (legend) renderLegend(legend);
     saveState(state);
   };
@@ -128,7 +138,10 @@ function main() {
   store.subscribe(applySelection);
   applySelection();
 
-  if (board) setupSelection({ board, store });
+  if (board) {
+    setupSelection({ board, store });
+    setupStatusEditor({ board, store, graph });
+  }
 
   window.__adnStore = store;
   window.__adnGraph = graph;
