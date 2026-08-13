@@ -1,8 +1,3 @@
-// ============================================================
-// store-persistence.js — Persistência do estado em localStorage.
-// Fase 2: persiste apenas a seleção. O schema é versionado para
-// evoluir com as próximas fases (status, attempts, overrides).
-// ============================================================
 
 const STORAGE_KEY = 'adn.state.v1';
 
@@ -15,6 +10,7 @@ export function serializeState(state) {
   return {
     version: 1,
     selected: Array.from(state.selected),
+    status: Object.fromEntries(state.status),
   };
 }
 
@@ -40,8 +36,16 @@ export function loadState() {
     if (!raw) return null;
     const data = JSON.parse(raw);
     if (data && typeof data === 'object') {
+      const status = new Map();
+      if (data.status && typeof data.status === 'object') {
+        const allowed = new Set(['completed', 'current', 'failed']);
+        for (const [id, value] of Object.entries(data.status)) {
+          if (allowed.has(value)) status.set(id, value);
+        }
+      }
       return {
         selected: new Set(Array.isArray(data.selected) ? data.selected : []),
+        status,
       };
     }
     return null;
