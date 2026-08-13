@@ -6,6 +6,8 @@
 // ============================================================
 
 import { DependencyService } from '../domain/services/dependency-service.js';
+import { AvailabilityService } from '../domain/services/availability-service.js';
+import { STATUS } from '../domain/status.js';
 
 export const RELATION = {
   NEUTRAL: 'neutral',
@@ -55,4 +57,28 @@ export function classifyCard(id, sel, hasSelection) {
   if (sel.prerequisites.has(id)) return RELATION.PREREQUISITE;
   if (sel.unlocks.has(id)) return RELATION.UNLOCKS;
   return hasSelection ? RELATION.UNRELATED : RELATION.NEUTRAL;
+}
+
+/**
+ * Conjunto de disciplinas "concluídas" (idade para disponibilidade).
+ * @param {Map<string,string>} status status map id -> STATUS
+ * @returns {Set<string>}
+ */
+export function deriveCompleted(status) {
+  const completed = new Set();
+  for (const [id, st] of status) {
+    if (st === STATUS.COMPLETED) completed.add(id);
+  }
+  return completed;
+}
+
+/**
+ * Selector de disciplinas disponíveis agora: podem ser cursadas dado
+ * o conjunto de disciplinas concluídas (avaliando a árvore AND/OR).
+ * @param {import('../domain/graph.js').CurriculumGraph} graph
+ * @param {Map<string,string>} status status map id -> STATUS
+ * @returns {Set<string>}
+ */
+export function deriveAvailable(graph, status) {
+  return new Set(AvailabilityService.available(graph, deriveCompleted(status)));
 }
