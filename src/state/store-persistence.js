@@ -11,6 +11,8 @@ export function serializeState(state) {
     version: 1,
     selected: Array.from(state.selected),
     status: Object.fromEntries(state.status),
+    semesterOverrides: Object.fromEntries(state.semesterOverrides),
+    attempts: Array.isArray(state.attempts) ? state.attempts.map((a) => ({ ...a })) : [],
   };
 }
 
@@ -43,9 +45,30 @@ export function loadState() {
           if (allowed.has(value)) status.set(id, value);
         }
       }
+      const semesterOverrides = new Map();
+      if (data.semesterOverrides && typeof data.semesterOverrides === 'object') {
+        for (const [id, value] of Object.entries(data.semesterOverrides)) {
+          const num = Number(value);
+          if (Number.isInteger(num) && num > 0) semesterOverrides.set(id, num);
+        }
+      }
+      const attempts = Array.isArray(data.attempts)
+        ? data.attempts
+            .filter(
+              (a) =>
+                a &&
+                typeof a.id === 'string' &&
+                typeof a.originalId === 'string' &&
+                Number.isInteger(a.attempt) &&
+                Number.isInteger(a.semester)
+            )
+            .map((a) => ({ id: a.id, originalId: a.originalId, attempt: a.attempt, semester: a.semester }))
+        : [];
       return {
         selected: new Set(Array.isArray(data.selected) ? data.selected : []),
         status,
+        semesterOverrides,
+        attempts,
       };
     }
     return null;
