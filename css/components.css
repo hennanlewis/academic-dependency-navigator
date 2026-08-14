@@ -3,6 +3,96 @@
   border-bottom: 1px solid var(--outline-variant);
 }
 
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.app-nav-slot {
+  flex: 0 0 auto;
+  width: 252px;
+  border-right: 1px solid var(--outline-variant);
+  background-color: var(--surface-container-low);
+}
+
+.app-nav {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  padding: var(--space-lg) var(--space-md);
+  overflow-y: auto;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-xs) var(--space-sm);
+}
+
+.nav-brand-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  background-color: var(--primary);
+  color: var(--on-primary);
+  font-size: var(--font-size-label-sm);
+  font-weight: var(--font-weight-headline-md);
+  letter-spacing: 0.05em;
+}
+
+.nav-brand-title {
+  font-size: var(--font-size-label-md);
+  font-weight: var(--font-weight-headline-md);
+  line-height: var(--line-height-label-md);
+  color: var(--primary);
+}
+
+.nav-brand-sub {
+  font-size: var(--font-size-label-sm);
+  line-height: var(--line-height-label-sm);
+  color: var(--on-surface-variant);
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.nav-item {
+  display: block;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-label-md);
+  font-weight: var(--font-weight-label-md);
+  color: var(--on-surface-variant);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+.nav-item:hover {
+  background-color: var(--surface-container-high);
+  color: var(--on-surface);
+}
+.nav-item[data-active='true'] {
+  background-color: var(--primary);
+  color: var(--on-primary);
+  font-weight: var(--font-weight-headline-md);
+}
+
+.app-shell-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
 .app-header-inner {
   max-width: var(--container-max);
   margin: 0 auto;

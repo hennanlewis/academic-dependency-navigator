@@ -20,6 +20,7 @@ import { setupSelection } from './interactions/selection.js';
 import { setupStatusEditor } from './interactions/status-editor.js';
 import { setupMoveSemester } from './interactions/move-semester.js';
 import { setupAttempts } from './interactions/attempts.js';
+import { mountNav } from './nav.js';
 
 const THEME_KEY = 'adn.theme';
 
@@ -87,6 +88,7 @@ function renderValidation(validation) {
 function main() {
   initTheme();
   document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
+  mountNav(document.getElementById('app-nav'));
 
   let curriculum;
   try {
