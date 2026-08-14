@@ -36,6 +36,19 @@ export class CurriculumGraph {
   }
 
   /**
+   * Maior semestre recomendado presente na matriz (para seletor).
+   * @returns {number}
+   */
+  getMaxRecommendedSemester() {
+    let max = 0;
+    for (const node of this.nodes.values()) {
+      const sem = node.recommendedSemester;
+      if (typeof sem === 'number' && sem > max) max = sem;
+    }
+    return max;
+  }
+
+  /**
    * Pré-requisitos diretos (ids das folhas exigidas).
    * @param {string} id
    * @returns {Set<string>}
