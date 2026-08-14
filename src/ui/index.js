@@ -9,6 +9,7 @@ import { curriculumData, curriculumMeta } from '../../data/curriculum-letras.js'
 import { normalizeCurriculum } from '../domain/curriculum.js';
 import { validateCurriculum } from '../domain/validators/curriculum-validator.js';
 import { buildGraph } from '../domain/graph-builder.js';
+import { applyAttempts } from '../domain/services/attempt-service.js';
 import { createStore } from '../state/store.js';
 import { deriveSelection, deriveAvailable, classifyCard, RELATION } from '../state/selectors.js';
 import { loadState, saveState } from '../state/store-persistence.js';
@@ -17,6 +18,8 @@ import { renderBoard } from './render/board.js';
 import { renderLegend } from './render/legend.js';
 import { setupSelection } from './interactions/selection.js';
 import { setupStatusEditor } from './interactions/status-editor.js';
+import { setupMoveSemester } from './interactions/move-semester.js';
+import { setupAttempts } from './interactions/attempts.js';
 
 const THEME_KEY = 'adn.theme';
 
@@ -102,30 +105,46 @@ function main() {
   renderStats(curriculum);
   renderValidation(validation);
 
-  const graph = buildGraph(curriculum);
+  const baseCurriculum = curriculum;
   const board = document.getElementById('board');
   const legend = document.getElementById('legend');
 
-  if (board) renderBoard(board, curriculum);
-  if (legend) renderLegend(legend);
-
-  // Restaura seleção e status salvos (Fases 2 e 3).
   const saved = loadState();
+  const savedAttempts =
+    saved && Array.isArray(saved.attempts)
+      ? saved.attempts.filter((a) => baseCurriculum.disciplines.some((d) => d.id === a.originalId))
+      : [];
+  const validIds = new Set(baseCurriculum.disciplines.map((d) => d.id));
+  for (const a of savedAttempts) validIds.add(a.id);
   const restored = new Set(
-    saved && saved.selected
-      ? [...saved.selected].filter((id) => graph.hasDiscipline(id))
-      : []
+    saved && saved.selected ? [...saved.selected].filter((id) => validIds.has(id)) : []
   );
   const restoredStatus = new Map(
-    saved && saved.status
-      ? [...saved.status].filter(([id]) => graph.hasDiscipline(id))
-      : []
+    saved && saved.status ? [...saved.status].filter(([id]) => validIds.has(id)) : []
   );
-  const store = createStore({ selected: restored, status: restoredStatus });
+  const restoredOverrides = new Map(
+    saved && saved.semesterOverrides ? [...saved.semesterOverrides].filter(([id]) => validIds.has(id)) : []
+  );
+  const restoredAttempts = savedAttempts;
+  const store = createStore({
+    selected: restored,
+    status: restoredStatus,
+    semesterOverrides: restoredOverrides,
+    attempts: restoredAttempts,
+  });
 
-  // Assinatura: a cada mudança relevante, re-deriva e aplica destaque.
-  const applySelection = () => {
+  // Currículo de trabalho = base + cópias de tentativa (Fase 6).
+  // O grafo é reconstruído a cada mudança para que as cópias sejam nós
+  // reais. `workingCurriculum`/`graph` são `let` pois as closures abaixo
+  // os leem no momento da execução (getter para a versão atual).
+  let workingCurriculum = applyAttempts(baseCurriculum, store.getState().attempts);
+  let graph = buildGraph(workingCurriculum);
+
+  const applyAll = () => {
     const state = store.getState();
+    workingCurriculum = applyAttempts(baseCurriculum, state.attempts);
+    graph = buildGraph(workingCurriculum);
+    if (board) renderBoard(board, workingCurriculum, state.semesterOverrides);
     const sel = deriveSelection(graph, state);
     if (board) {
       applySelectionToBoard(board, sel, sel.selected.size > 0);
@@ -136,16 +155,19 @@ function main() {
     saveState(state);
   };
 
-  store.subscribe(applySelection);
-  applySelection();
+  store.subscribe(applyAll);
+
+  applyAll();
 
   if (board) {
     setupSelection({ board, store });
-    setupStatusEditor({ board, store, graph });
+    setupStatusEditor({ board, store, graph: () => graph });
+    setupMoveSemester({ board, store, graph: () => graph });
+    setupAttempts({ board, store, graph: () => graph });
   }
 
   window.__adnStore = store;
-  window.__adnGraph = graph;
+  window.__adnGraph = () => graph;
   window.__adnRELATION = RELATION;
   window.__adnClassify = classifyCard;
 }
