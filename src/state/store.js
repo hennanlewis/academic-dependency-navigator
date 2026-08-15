@@ -75,6 +75,22 @@ export function createStore(initial = {}) {
         state.status.set(id, status);
       }
 
+      // Aprovar o original remove suas tentativas (cópias): não faz sentido
+      // manter a reprovação "refeita" quando a disciplina original passou.
+      if (status === STATUS.COMPLETED) {
+        const copies = state.attempts
+          .filter((a) => a.originalId === id)
+          .map((a) => a.id);
+        if (copies.length) {
+          state.attempts = state.attempts.filter((a) => a.originalId !== id);
+          for (const cid of copies) {
+            state.status.delete(cid);
+            state.semesterOverrides.delete(cid);
+            state.selected.delete(cid);
+          }
+        }
+      }
+
       if (status === STATUS.CURRENT && graph) {
         for (const pre of graph.getAllPrerequisites(id)) {
           if (!state.status.has(pre)) state.status.set(pre, STATUS.COMPLETED);
