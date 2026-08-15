@@ -94,8 +94,8 @@
 }
 
 .app-header-inner {
-  max-width: var(--container-max);
-  margin: 0 auto;
+  width: min(100%, var(--container-max));
+  margin-inline: auto;
   padding: var(--space-md) var(--gutter);
   display: flex;
   align-items: center;
@@ -104,14 +104,14 @@
 }
 
 .app-main {
-  max-width: var(--container-max);
-  margin: 0 auto;
+  width: min(100%, var(--container-max));
+  margin-inline: auto;
   padding: var(--space-lg) var(--gutter);
 }
 
 .app-footer {
-  max-width: var(--container-max);
-  margin: 0 auto;
+  width: min(100%, var(--container-max));
+  margin-inline: auto;
   padding: var(--space-md) var(--gutter) var(--space-lg);
   text-align: center;
 }
@@ -158,6 +158,20 @@
 .btn-outline:hover { background-color: var(--surface-container-high); }
 .btn-outline:active { transform: scale(0.97); }
 
+.btn-danger {
+  background-color: transparent;
+  color: var(--status-failed);
+  font-family: var(--font-family);
+  font-size: var(--font-size-label-md);
+  font-weight: var(--font-weight-label-md);
+  padding: var(--space-sm) var(--space-lg);
+  border: 1px solid var(--status-failed);
+  border-radius: var(--radius-md);
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+.btn-danger:hover { background-color: color-mix(in srgb, var(--status-failed) 12%, transparent); }
+.btn-danger:active { transform: scale(0.97); }
+
 .card {
   background-color: var(--surface-container-lowest);
   border: 1px solid var(--outline-variant);
@@ -190,6 +204,9 @@
   grid-auto-columns: minmax(260px, 1fr);
   gap: var(--space-lg);
   align-items: start;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
   overflow-x: auto;
   padding-bottom: var(--space-md);
 }
@@ -239,13 +256,15 @@
 
 .card-disc {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
   background-color: var(--surface-bright);
   border: 1px solid var(--outline-variant);
   border-left: 4px solid var(--outline);
   border-radius: var(--radius-sm);
-  padding: var(--space-md) var(--space-lg) var(--space-md) var(--space-md);
+  padding: var(--space-md);
   min-width: 0;
-  overflow: hidden;
   transition: box-shadow var(--transition-fast), transform var(--transition-fast), border-color var(--transition-fast);
 }
 
@@ -274,8 +293,18 @@
   filter: saturate(0.4);
 }
 
-.legend-wrap {
+.board-toolbar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-md);
   margin-bottom: var(--space-md);
+}
+
+.legend-wrap {
+  margin-bottom: 0;
+  min-width: 0;
 }
 
 .legend {
@@ -367,71 +396,6 @@
   color: var(--on-surface-variant);
 }
 
-.card-disc-type {
-  font-size: var(--font-size-label-sm);
-  font-weight: var(--font-weight-label-sm);
-  color: var(--on-primary-container);
-  background-color: var(--on-primary);
-  border-radius: var(--radius-full);
-  padding: 2px var(--space-sm);
-  letter-spacing: 0.03em;
-}
-
-.card-disc-tags {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: var(--space-xs) var(--space-sm);
-}
-
-.card-move {
-  position: absolute;
-  top: 50%;
-  left: calc(100% - 14px);
-  z-index: 2;
-  white-space: nowrap;
-  font-size: var(--font-size-label-sm);
-  font-weight: var(--font-weight-label-sm);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: #ffffff;
-  padding: 2px var(--space-sm);
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  transform: translate(-50%, -50%) rotate(-90deg);
-  transform-origin: center;
-  pointer-events: auto;
-  transition: opacity var(--transition-fast);
-}
-
-.card-move:hover {
-  opacity: 0.7;
-}
-
-.card-attempt {
-  position: absolute;
-  top: 6px;
-  right: 6px;
-  z-index: 3;
-  white-space: nowrap;
-  font-size: var(--font-size-label-sm);
-  font-weight: var(--font-weight-label-sm);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--status-failed);
-  padding: 2px var(--space-sm);
-  border: 1px solid var(--outline-variant);
-  border-radius: var(--radius-full);
-  background-color: var(--surface-container);
-  cursor: pointer;
-  transition: opacity var(--transition-fast), border-color var(--transition-fast);
-}
-.card-attempt:hover {
-  opacity: 0.75;
-  border-color: var(--status-failed);
-}
-
 .card-attempt-badge {
   display: inline-flex;
   align-items: center;
@@ -444,41 +408,6 @@
   border: 1px solid var(--status-failed);
   border-radius: var(--radius-full);
   padding: 2px var(--space-sm);
-}
-
-.card-attempt-remove {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  border: 1px solid var(--outline-variant);
-  border-radius: var(--radius-full);
-  background-color: var(--surface-container);
-  color: var(--on-surface-variant);
-  font-size: var(--font-size-label-sm);
-  line-height: 1;
-  cursor: pointer;
-  transition: border-color var(--transition-fast), color var(--transition-fast);
-}
-.card-attempt-remove:hover {
-  border-color: var(--status-failed);
-  color: var(--status-failed);
-}
-
-.card-disc::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: -1px;
-  bottom: 0;
-  width: 28px;
-  z-index: 1;
-  background-color: var(--surface-container);
-  border-left: 1px solid var(--outline-variant);
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  pointer-events: none;
-  user-select: none;
 }
 
 .card-disc-status {
@@ -553,18 +482,8 @@
   color: var(--on-surface-variant);
 }
 
-.card-disc-available {
-  display: none;
-  font-size: var(--font-size-label-sm);
-  font-weight: var(--font-weight-label-sm);
-  color: var(--on-primary-container);
-  background-color: var(--on-primary);
-  border-radius: var(--radius-full);
-  padding: 2px var(--space-sm);
-}
-
-.card-disc-available:not([hidden]) {
-  display: inline-block;
+.card-disc-meta.is-available {
+  color: var(--status-approved);
 }
 
 .card-disc[data-type='Obrigatória'] { border-left-color: var(--primary); }
@@ -577,6 +496,12 @@
 
 .card-disc[data-status='completed'] {
   border-left-color: var(--status-approved);
+}
+.card-disc[data-status='current'] {
+  border-left-color: var(--status-current);
+}
+.card-disc[data-status='failed'] {
+  border-left-color: var(--status-failed);
 }
 
 .modal-overlay {
@@ -857,6 +782,9 @@
 }
 
 .catalog-row {
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
   display: flex;
   align-items: center;
   gap: var(--space-md);

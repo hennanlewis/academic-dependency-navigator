@@ -5,6 +5,12 @@
 import { RELATION, classifyCard } from '../../state/selectors.js';
 import { STATUS, STATUS_LABELS } from '../../domain/status.js';
 
+const TYPE_ABBR = {
+  'Obrigatória': 'OBR',
+  'Optativa': 'OPT',
+  'Complementar': 'COMP',
+};
+
 /**
  * Cria um elemento de cartão de disciplina.
  * @param {Object} discipline disciplina canônica
@@ -40,62 +46,28 @@ export function renderCard(discipline, opts = {}) {
   code.textContent = discipline.code || discipline.id;
   left.appendChild(code);
 
-  const statusBtn = document.createElement('button');
-  statusBtn.type = 'button';
-  statusBtn.className = 'card-disc-status';
-  statusBtn.dataset.status = status ?? '';
-  statusBtn.title = 'Editar status';
-  statusBtn.setAttribute('aria-label', `Editar status de ${discipline.name}`);
-  const statusDot = document.createElement('span');
-  statusDot.className = 'card-disc-status-dot';
-  const statusLabel = document.createElement('span');
-  statusLabel.className = 'card-disc-status-label';
-  statusLabel.textContent = status ? STATUS_LABELS[status] : 'Pendente';
-  statusBtn.append(statusDot, statusLabel);
-  if (!readOnly) left.appendChild(statusBtn);
-  header.append(left);
+  if (discipline.attempt) {
+    const ab = document.createElement('span');
+    ab.className = 'card-attempt-badge';
+    ab.textContent = `T${discipline.attempt}`;
+    left.appendChild(ab);
+  }
+  header.appendChild(left);
 
   if (!readOnly) {
-    const moveBtn = document.createElement('button');
-    moveBtn.type = 'button';
-    moveBtn.className = 'card-move';
-    moveBtn.title = 'Mover de semestre';
-    moveBtn.setAttribute('aria-label', `Mover ${discipline.name} de semestre`);
-    moveBtn.textContent = 'Mover';
-
-    card.appendChild(moveBtn);
-  }
-
-  if (discipline.attempt) {
-    const attemptBox = document.createElement('div');
-    attemptBox.className = 'card-attempt';
-
-    const badge = document.createElement('span');
-    badge.className = 'card-attempt-badge';
-    badge.textContent = `Tentativa ${discipline.attempt}`;
-    badge.title = `Cópia de ${discipline.name}`;
-
-    attemptBox.appendChild(badge);
-
-    if (!readOnly) {
-      const removeBtn = document.createElement('button');
-      removeBtn.type = 'button';
-      removeBtn.className = 'card-attempt-remove';
-      removeBtn.title = 'Remover tentativa';
-      removeBtn.setAttribute('aria-label', `Remover tentativa de ${discipline.name}`);
-      removeBtn.textContent = '✕';
-      attemptBox.appendChild(removeBtn);
-    }
-
-    card.append(attemptBox);
-  } else if (!readOnly) {
-    const attemptBtn = document.createElement('button');
-    attemptBtn.type = 'button';
-    attemptBtn.className = 'card-attempt';
-    attemptBtn.title = 'Nova tentativa';
-    attemptBtn.setAttribute('aria-label', `Nova tentativa de ${discipline.name}`);
-    attemptBtn.textContent = 'Refazer';
-    card.appendChild(attemptBtn);
+    const statusBtn = document.createElement('button');
+    statusBtn.type = 'button';
+    statusBtn.className = 'card-disc-status';
+    statusBtn.dataset.status = status ?? '';
+    statusBtn.title = 'Editar status';
+    statusBtn.setAttribute('aria-label', `Editar status de ${discipline.name}`);
+    const statusDot = document.createElement('span');
+    statusDot.className = 'card-disc-status-dot';
+    const statusLabel = document.createElement('span');
+    statusLabel.className = 'card-disc-status-label';
+    statusLabel.textContent = status ? STATUS_LABELS[status] : 'Pendente';
+    statusBtn.append(statusDot, statusLabel);
+    header.appendChild(statusBtn);
   }
 
   const name = document.createElement('h4');
@@ -104,32 +76,23 @@ export function renderCard(discipline, opts = {}) {
 
   const meta = document.createElement('div');
   meta.className = 'card-disc-meta';
-  meta.textContent = `${discipline.workload}${discipline.workload_unit}` +
-    (discipline.credits ? ` · ${discipline.credits} cr` : '');
 
-  const tags = document.createElement('div');
-  tags.className = 'card-disc-tags';
-
-  const typeBadge = document.createElement('span');
-  typeBadge.className = 'card-disc-type';
-  typeBadge.textContent = discipline.type;
-
-  const av = document.createElement('span');
-  av.className = 'card-disc-available';
-  av.textContent = 'Disponível';
-  av.hidden = !available;
+  const typeAbbr = TYPE_ABBR[discipline.type] || discipline.type.slice(0, 3).toUpperCase();
+  const parts = [`${typeAbbr} ${discipline.workload}${discipline.workload_unit}`];
+  if (discipline.credits) parts.push(`${discipline.credits} cr`);
+  if (available) {
+    parts.push('(Disponível)');
+    meta.classList.add('is-available');
+  }
+  meta.textContent = parts.join(' · ');
 
   if (readOnly) {
-    // Em cards só-leitura, o tipo aparece na borda direita via ::after
-    // (pseudo-elemento não é selecionável/copiado com o texto).
+    // Em cards só-leitura, o tipo também aparece na borda direita via ::after.
     card.dataset.typeRail = discipline.type;
-    tags.appendChild(av);
-  } else {
-    tags.append(typeBadge, av);
   }
 
   card.append(header, name, meta);
-  card.appendChild(tags);
+
   return card;
 }
 
@@ -139,10 +102,11 @@ export function renderCard(discipline, opts = {}) {
  * @param {string|null} status um valor de STATUS
  */
 export function applyStatus(card, status) {
-  card.dataset.status = status ?? '';
+  status = status ?? STATUS.NONE;
+  card.dataset.status = status;
   const pill = card.querySelector('.card-disc-status');
   if (pill) {
-    pill.dataset.status = status ?? '';
+    pill.dataset.status = status;
     const label = pill.querySelector('.card-disc-status-label');
     if (label) label.textContent = status ? STATUS_LABELS[status] : 'Pendente';
   }
@@ -184,16 +148,21 @@ export function applyStatusesToBoard(board, statusMap) {
 
 /**
  * Aplica o conjunto de disciplinas disponíveis a todos os cartões.
- * Mostra/esconde o badge e marca `data-available`.
+ * Marca `data-available` e sincroniza o marcador "(Disponível)" na meta.
  * @param {HTMLElement} board container da grade
  * @param {Set<string>} available ids disponíveis para cursar
  */
 export function applyAvailabilityToBoard(board, available) {
   for (const card of board.querySelectorAll('.card-disc')) {
-    const id = card.dataset.id;
-    const isAvailable = available.has(id);
+    const isAvailable = available.has(card.dataset.id);
     card.dataset.available = isAvailable ? 'true' : '';
-    const badge = card.querySelector('.card-disc-available');
-    if (badge) badge.hidden = !isAvailable;
+    const meta = card.querySelector('.card-disc-meta');
+    if (meta) {
+      meta.classList.toggle('is-available', isAvailable);
+      const mark = '(Disponível)';
+      let text = meta.textContent.replace(` · ${mark}`, '').replace(` ${mark}`, '');
+      if (isAvailable) text = `${text.trim()} ${mark}`;
+      meta.textContent = text;
+    }
   }
 }
