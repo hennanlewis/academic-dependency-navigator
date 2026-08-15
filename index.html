@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Academic Dependency Navigator</title>
+  <title>Dashboard — Academic Dependency Navigator</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -18,26 +18,34 @@
       <header class="app-header">
         <div class="app-header-inner">
           <div>
-            <h1 class="headline-md text-primary">Academic Dependency Navigator</h1>
+            <h1 class="headline-md text-primary">Dashboard</h1>
             <p class="label-md text-on-surface-variant" id="course-meta">Carregando…</p>
           </div>
           <button id="theme-toggle" class="btn" type="button">Escuro</button>
         </div>
       </header>
 
-      <main class="app-main">
-        <section class="card">
-          <div class="card-head">
-            <h2 class="headline-md text-primary">Matriz Curricular</h2>
-            <span class="label-sm text-on-surface-variant" id="validation-status">Validando…</span>
+      <main class="app-main dashboard-layout">
+        <section class="dashboard-col dashboard-left">
+          <div class="card">
+            <div class="card-head">
+              <h2 class="headline-md text-primary">Cursando</h2>
+              <span class="label-sm text-on-surface-variant" id="cursando-count"></span>
+            </div>
+            <p class="label-md text-on-surface-variant dashboard-hint">
+              Apenas visualização. Para mudar status ou mover, use a página Matriz.
+            </p>
+            <div id="cursando-list" class="dashboard-list"></div>
           </div>
-          <div class="label-md text-on-surface-variant" id="course-stats"></div>
-          <div id="validation-details"></div>
         </section>
 
-        <section class="board-wrap">
-          <div id="legend" class="legend-wrap" aria-label="Legenda"></div>
-          <div class="board" id="board"></div>
+        <section class="dashboard-col dashboard-right">
+          <div class="card">
+            <div class="card-head">
+              <h2 class="headline-md text-primary">Progresso do currículo</h2>
+            </div>
+            <div id="history-stats" class="stat-list"></div>
+          </div>
         </section>
       </main>
 
@@ -47,6 +55,6 @@
     </div>
   </div>
 
-  <script type="module" src="src/ui/index.js"></script>
+  <script type="module" src="src/ui/dashboard.js"></script>
 </body>
 </html>

@@ -743,6 +743,104 @@
   border-top: 1px solid var(--outline-variant);
 }
 
+.dashboard-hint {
+  margin-bottom: var(--space-md);
+}
+
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--space-lg);
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .dashboard-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dashboard-col {
+  min-width: 0;
+}
+
+.dashboard-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-md);
+}
+
+.dashboard-list .card-disc {
+  height: 100%;
+}
+
+/* Estatísticas compactas (altura ≈ linha do catálogo) */
+.stat-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.stat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--surface-bright);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-md);
+}
+
+.stat-right {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+}
+
+.stat-value {
+  font-size: var(--font-size-label-md);
+  font-weight: var(--font-weight-headline-md);
+  color: var(--primary);
+  line-height: var(--line-height-label-md);
+}
+
+.stat-label {
+  font-size: var(--font-size-label-md);
+  font-weight: var(--font-weight-label-md);
+  color: var(--on-surface-variant);
+}
+
+.stat-sub {
+  font-size: var(--font-size-label-sm);
+  color: var(--outline);
+}
+
+.stat-note {
+  font-size: var(--font-size-label-md);
+  color: var(--on-surface-variant);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--outline-variant);
+}
+
+/* Tipo na borda direita (como o "Mover") — cards só-leitura.
+   Implementado como ::after (pseudo-elemento), então não é
+   selecionável nem copiado com o texto. */
+.card-disc[data-type-rail]::after {
+  content: attr(data-type-rail);
+  position: absolute;
+  top: 50%;
+  left: calc(100% - 14px);
+  z-index: 3;
+  white-space: nowrap;
+  font-size: var(--font-size-label-sm);
+  font-weight: var(--font-weight-label-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--on-surface-variant);
+  transform: translate(-50%, -50%) rotate(-90deg);
+  transform-origin: center;
+}
+
 .catalog-filter {
   width: 100%;
   margin-bottom: var(--space-md);

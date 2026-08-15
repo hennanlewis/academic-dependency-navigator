@@ -13,10 +13,10 @@
  * - href:   página de destino
  */
 export const NAV_ITEMS = [
-  { key: 'index', label: 'Matriz (Prerequisites)', href: 'index.html' },
-  { key: 'history', label: 'Histórico (Academic History)', href: 'history.html' },
-  { key: 'catalog', label: 'Catálogo (Course Catalog)', href: 'catalog.html' },
-  { key: 'settings', label: 'Configurações (Settings)', href: 'settings.html' },
+  { key: 'index', label: 'Dashboard', href: 'index.html' },
+  { key: 'matriz', label: 'Matriz', href: 'matriz.html' },
+  { key: 'catalog', label: 'Catálogo', href: 'catalog.html' },
+  { key: 'settings', label: 'Configurações', href: 'settings.html' },
 ];
 
 /**

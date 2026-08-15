@@ -15,7 +15,7 @@ import { STATUS, STATUS_LABELS } from '../../domain/status.js';
  * @returns {HTMLElement}
  */
 export function renderCard(discipline, opts = {}) {
-  const { relation = RELATION.NEUTRAL, status = STATUS.NONE, available = false } = opts;
+  const { relation = RELATION.NEUTRAL, status = STATUS.NONE, available = false, readOnly = false } = opts;
   const card = document.createElement('article');
   card.className = 'card-disc';
   card.dataset.id = discipline.id;
@@ -52,17 +52,19 @@ export function renderCard(discipline, opts = {}) {
   statusLabel.className = 'card-disc-status-label';
   statusLabel.textContent = status ? STATUS_LABELS[status] : 'Pendente';
   statusBtn.append(statusDot, statusLabel);
-  left.appendChild(statusBtn);
+  if (!readOnly) left.appendChild(statusBtn);
   header.append(left);
 
-  const moveBtn = document.createElement('button');
-  moveBtn.type = 'button';
-  moveBtn.className = 'card-move';
-  moveBtn.title = 'Mover de semestre';
-  moveBtn.setAttribute('aria-label', `Mover ${discipline.name} de semestre`);
-  moveBtn.textContent = 'Mover';
+  if (!readOnly) {
+    const moveBtn = document.createElement('button');
+    moveBtn.type = 'button';
+    moveBtn.className = 'card-move';
+    moveBtn.title = 'Mover de semestre';
+    moveBtn.setAttribute('aria-label', `Mover ${discipline.name} de semestre`);
+    moveBtn.textContent = 'Mover';
 
-  card.appendChild(moveBtn);
+    card.appendChild(moveBtn);
+  }
 
   if (discipline.attempt) {
     const attemptBox = document.createElement('div');
@@ -73,16 +75,20 @@ export function renderCard(discipline, opts = {}) {
     badge.textContent = `Tentativa ${discipline.attempt}`;
     badge.title = `Cópia de ${discipline.name}`;
 
-    const removeBtn = document.createElement('button');
-    removeBtn.type = 'button';
-    removeBtn.className = 'card-attempt-remove';
-    removeBtn.title = 'Remover tentativa';
-    removeBtn.setAttribute('aria-label', `Remover tentativa de ${discipline.name}`);
-    removeBtn.textContent = '✕';
+    attemptBox.appendChild(badge);
 
-    attemptBox.append(badge, removeBtn);
+    if (!readOnly) {
+      const removeBtn = document.createElement('button');
+      removeBtn.type = 'button';
+      removeBtn.className = 'card-attempt-remove';
+      removeBtn.title = 'Remover tentativa';
+      removeBtn.setAttribute('aria-label', `Remover tentativa de ${discipline.name}`);
+      removeBtn.textContent = '✕';
+      attemptBox.appendChild(removeBtn);
+    }
+
     card.append(attemptBox);
-  } else {
+  } else if (!readOnly) {
     const attemptBtn = document.createElement('button');
     attemptBtn.type = 'button';
     attemptBtn.className = 'card-attempt';
@@ -113,7 +119,14 @@ export function renderCard(discipline, opts = {}) {
   av.textContent = 'Disponível';
   av.hidden = !available;
 
-  tags.append(typeBadge, av);
+  if (readOnly) {
+    // Em cards só-leitura, o tipo aparece na borda direita via ::after
+    // (pseudo-elemento não é selecionável/copiado com o texto).
+    card.dataset.typeRail = discipline.type;
+    tags.appendChild(av);
+  } else {
+    tags.append(typeBadge, av);
+  }
 
   card.append(header, name, meta);
   card.appendChild(tags);
