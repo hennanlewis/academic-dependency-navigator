@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-theme="light" data-page="catalog">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catálogo — Academic Dependency Navigator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="css/tokens.css" rel="stylesheet" />
+  <link href="css/base.css" rel="stylesheet" />
+  <link href="css/components.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="app-shell">
+    <div id="app-nav" class="app-nav-slot"></div>
+    <div class="app-shell-main">
+      <header class="app-header">
+        <div class="app-header-inner">
+          <div>
+            <h1 class="headline-md text-primary">Catálogo</h1>
+            <p class="label-md text-on-surface-variant" id="course-meta">Carregando…</p>
+          </div>
+          <button id="theme-toggle" class="btn" type="button">Escuro</button>
+        </div>
+      </header>
+
+      <main class="app-main">
+        <section class="card">
+          <div class="card-head">
+            <h2 class="headline-md text-primary">Disciplinas</h2>
+            <span class="label-sm text-on-surface-variant" id="catalog-count"></span>
+          </div>
+          <input id="catalog-filter" class="catalog-filter" type="search" placeholder="Buscar por nome ou código…" />
+          <div id="catalog-list" class="catalog-list"></div>
+        </section>
+      </main>
+
+      <footer class="app-footer">
+        <span class="label-sm text-outline">Rodando via ES Modules — sem framework, sem build.</span>
+      </footer>
+    </div>
+  </div>
+
+  <script type="module" src="src/ui/catalog.js"></script>
+</body>
+</html>

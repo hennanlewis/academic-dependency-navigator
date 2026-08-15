@@ -11,7 +11,7 @@ import { STATUS, STATUS_LABELS } from '../domain/status.js';
 function row(d, status) {
   const el = document.createElement('a');
   el.className = 'catalog-row';
-  el.href = 'index.html';
+  el.href = 'matriz.html';
   el.title = 'Abrir na matriz';
 
   const code = document.createElement('span');
@@ -68,6 +68,20 @@ function main() {
 
   let current = [];
 
+  // Não-pendentes primeiro; dentro de cada grupo, ordenado por ID.
+  const groupAndSort = (list) => {
+    const nonPending = [];
+    const pending = [];
+    for (const d of list) {
+      if (status.get(d.id)) nonPending.push(d);
+      else pending.push(d);
+    }
+    const byId = (a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
+    nonPending.sort(byId);
+    pending.sort(byId);
+    return [...nonPending, ...pending];
+  };
+
   const render = () => {
     list.replaceChildren();
     for (const d of current) list.appendChild(row(d, status.get(d.id)));
@@ -76,7 +90,7 @@ function main() {
 
   const applyFilter = () => {
     const q = (filter.value || '').trim().toLowerCase();
-    current = q
+    const filtered = q
       ? disciplines.filter(
           (d) =>
             (d.name || '').toLowerCase().includes(q) ||
@@ -84,6 +98,7 @@ function main() {
             (d.id || '').toLowerCase().includes(q)
         )
       : disciplines;
+    current = groupAndSort(filtered);
     render();
   };
 
