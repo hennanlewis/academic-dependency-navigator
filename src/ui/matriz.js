@@ -15,8 +15,6 @@ import { renderBoard } from './render/board.js';
 import { renderLegend } from './render/legend.js';
 import { setupSelection } from './interactions/selection.js';
 import { setupStatusEditor } from './interactions/status-editor.js';
-import { setupMoveSemester } from './interactions/move-semester.js';
-import { setupAttempts } from './interactions/attempts.js';
 import { createApp } from './bootstrap.js';
 
 function renderMeta(curriculum) {
@@ -24,21 +22,6 @@ function renderMeta(curriculum) {
   if (!el) return;
   const meta = curriculum.meta;
   el.textContent = [meta.curso, meta.instituicao, meta.versao].filter(Boolean).join(' — ');
-}
-
-function renderStats(curriculum) {
-  const el = document.getElementById('course-stats');
-  if (!el) return;
-  const total = curriculum.disciplines.length;
-  const obrig = curriculum.disciplines.filter((d) => d.type === 'Obrigatória').length;
-  const opt = curriculum.disciplines.filter((d) => d.type === 'Optativa').length;
-  const comp = curriculum.disciplines.filter((d) => d.type === 'Complementar').length;
-  el.innerHTML = `
-    <span>${total} disciplinas</span>
-    <span>${obrig} obrigatórias</span>
-    <span>${opt} optativas</span>
-    <span>${comp} complementares</span>
-  `;
 }
 
 function renderValidation(validation) {
@@ -79,7 +62,6 @@ function main() {
 
   const validation = validateCurriculum(curriculum);
   renderMeta(curriculum);
-  renderStats(curriculum);
   renderValidation(validation);
 
   const board = document.getElementById('board');
@@ -106,8 +88,6 @@ function main() {
   if (board) {
     setupSelection({ board, store });
     setupStatusEditor({ board, store, graph: () => app.getGraph() });
-    setupMoveSemester({ board, store, graph: () => app.getGraph() });
-    setupAttempts({ board, store, graph: () => app.getGraph() });
   }
 
   window.__adnStore = store;

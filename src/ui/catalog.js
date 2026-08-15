@@ -7,12 +7,15 @@
 
 import { createApp } from './bootstrap.js';
 import { STATUS, STATUS_LABELS } from '../domain/status.js';
+import { saveState } from '../state/store-persistence.js';
+import { setupDisciplineSettings } from './interactions/discipline-settings.js';
 
 function row(d, status) {
-  const el = document.createElement('a');
+  const el = document.createElement('button');
+  el.type = 'button';
   el.className = 'catalog-row';
-  el.href = 'matriz.html';
-  el.title = 'Abrir na matriz';
+  el.dataset.id = d.id;
+  el.title = 'Configurar disciplina';
 
   const code = document.createElement('span');
   code.className = 'catalog-code';
@@ -105,10 +108,13 @@ function main() {
   filter.addEventListener('input', applyFilter);
   applyFilter();
 
-  // Re-renderiza quando o status muda (ex.: outra aba salvou algo novo).
+  setupDisciplineSettings({ container: list, store: app.store, graph: () => app.getGraph() });
+
+  // Re-renderiza e persiste quando algo muda (status, semestre, tentativa).
   app.store.subscribe(() => {
+    saveState(app.getState());
     const fresh = app.getState().status;
-    current = current.map((d) => d);
+    current = groupAndSort(current);
     list.replaceChildren(...current.map((d) => row(d, fresh.get(d.id))));
     if (count) count.textContent = `${current.length} disciplinas`;
   });
