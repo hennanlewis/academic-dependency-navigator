@@ -8,11 +8,8 @@
 import { curriculumData, curriculumMeta } from '../../data/curriculum-letras.js';
 import { normalizeCurriculum } from '../domain/curriculum.js';
 import { validateCurriculum } from '../domain/validators/curriculum-validator.js';
-import { buildGraph } from '../domain/graph-builder.js';
-import { applyAttempts } from '../domain/services/attempt-service.js';
-import { createStore } from '../state/store.js';
 import { deriveSelection, deriveAvailable, classifyCard, RELATION } from '../state/selectors.js';
-import { loadState, saveState } from '../state/store-persistence.js';
+import { saveState } from '../state/store-persistence.js';
 import { applySelectionToBoard, applyStatusesToBoard, applyAvailabilityToBoard } from './render/card.js';
 import { renderBoard } from './render/board.js';
 import { renderLegend } from './render/legend.js';
@@ -20,28 +17,7 @@ import { setupSelection } from './interactions/selection.js';
 import { setupStatusEditor } from './interactions/status-editor.js';
 import { setupMoveSemester } from './interactions/move-semester.js';
 import { setupAttempts } from './interactions/attempts.js';
-import { mountNav } from './nav.js';
-
-const THEME_KEY = 'adn.theme';
-
-function initTheme() {
-  const stored = localStorage.getItem(THEME_KEY);
-  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const theme = stored || (prefersDark ? 'dark' : 'light');
-  document.documentElement.dataset.theme = theme;
-  const btn = document.getElementById('theme-toggle');
-  if (btn) btn.textContent = theme === 'dark' ? 'Claro' : 'Escuro';
-  return theme;
-}
-
-function toggleTheme() {
-  const current = document.documentElement.dataset.theme;
-  const next = current === 'dark' ? 'light' : 'dark';
-  document.documentElement.dataset.theme = next;
-  localStorage.setItem(THEME_KEY, next);
-  const btn = document.getElementById('theme-toggle');
-  if (btn) btn.textContent = next === 'dark' ? 'Claro' : 'Escuro';
-}
+import { createApp } from './bootstrap.js';
 
 function renderMeta(curriculum) {
   const el = document.getElementById('course-meta');
@@ -86,9 +62,8 @@ function renderValidation(validation) {
 }
 
 function main() {
-  initTheme();
-  document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
-  mountNav(document.getElementById('app-nav'));
+  const app = createApp();
+  const { store } = app;
 
   let curriculum;
   try {
@@ -107,46 +82,13 @@ function main() {
   renderStats(curriculum);
   renderValidation(validation);
 
-  const baseCurriculum = curriculum;
   const board = document.getElementById('board');
   const legend = document.getElementById('legend');
 
-  const saved = loadState();
-  const savedAttempts =
-    saved && Array.isArray(saved.attempts)
-      ? saved.attempts.filter((a) => baseCurriculum.disciplines.some((d) => d.id === a.originalId))
-      : [];
-  const validIds = new Set(baseCurriculum.disciplines.map((d) => d.id));
-  for (const a of savedAttempts) validIds.add(a.id);
-  const restored = new Set(
-    saved && saved.selected ? [...saved.selected].filter((id) => validIds.has(id)) : []
-  );
-  const restoredStatus = new Map(
-    saved && saved.status ? [...saved.status].filter(([id]) => validIds.has(id)) : []
-  );
-  const restoredOverrides = new Map(
-    saved && saved.semesterOverrides ? [...saved.semesterOverrides].filter(([id]) => validIds.has(id)) : []
-  );
-  const restoredAttempts = savedAttempts;
-  const store = createStore({
-    selected: restored,
-    status: restoredStatus,
-    semesterOverrides: restoredOverrides,
-    attempts: restoredAttempts,
-  });
-
-  // Currículo de trabalho = base + cópias de tentativa (Fase 6).
-  // O grafo é reconstruído a cada mudança para que as cópias sejam nós
-  // reais. `workingCurriculum`/`graph` são `let` pois as closures abaixo
-  // os leem no momento da execução (getter para a versão atual).
-  let workingCurriculum = applyAttempts(baseCurriculum, store.getState().attempts);
-  let graph = buildGraph(workingCurriculum);
-
   const applyAll = () => {
     const state = store.getState();
-    workingCurriculum = applyAttempts(baseCurriculum, state.attempts);
-    graph = buildGraph(workingCurriculum);
-    if (board) renderBoard(board, workingCurriculum, state.semesterOverrides);
+    const graph = app.rebuild();
+    if (board) renderBoard(board, app.getWorkingCurriculum(), state.semesterOverrides);
     const sel = deriveSelection(graph, state);
     if (board) {
       applySelectionToBoard(board, sel, sel.selected.size > 0);
@@ -163,13 +105,13 @@ function main() {
 
   if (board) {
     setupSelection({ board, store });
-    setupStatusEditor({ board, store, graph: () => graph });
-    setupMoveSemester({ board, store, graph: () => graph });
-    setupAttempts({ board, store, graph: () => graph });
+    setupStatusEditor({ board, store, graph: () => app.getGraph() });
+    setupMoveSemester({ board, store, graph: () => app.getGraph() });
+    setupAttempts({ board, store, graph: () => app.getGraph() });
   }
 
   window.__adnStore = store;
-  window.__adnGraph = () => graph;
+  window.__adnGraph = () => app.getGraph();
   window.__adnRELATION = RELATION;
   window.__adnClassify = classifyCard;
 }
