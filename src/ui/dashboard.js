@@ -6,7 +6,7 @@
 // ============================================================
 
 import { createApp } from './bootstrap.js';
-import { deriveAvailable, deriveCompleted } from '../state/selectors.js';
+import { deriveAvailable } from '../state/selectors.js';
 import { STATUS } from '../domain/status.js';
 import { renderCard } from './render/card.js';
 
@@ -60,7 +60,6 @@ function main() {
   renderMeta(app.baseCurriculum);
 
   const status = state.status;
-  const completed = deriveCompleted(status);
   const available = deriveAvailable(graph, status);
 
   let chTotal = 0;
@@ -71,23 +70,43 @@ function main() {
   let obrig = 0;
   let opt = 0;
   let comp = 0;
+  let aprovadas = 0;
   const cursandoIds = [];
 
+  // Agrega por "disciplina dona" (key = originalId para cópias, senão id),
+  // para que original + tentativas não somem carga/contagens em duplicidade.
+  const byKey = new Map();
   for (const d of disciplines) {
-    const ch = d.workload || 0;
-    chTotal += ch;
-    if (d.type === 'Obrigatória') {
-      obrig++;
-      chObrigatoria += ch;
-    } else if (d.type === 'Optativa') opt++;
-    else if (d.type === 'Complementar') comp++;
-
+    const key = d.originalId || d.id;
+    let rec = byKey.get(key);
+    if (!rec) {
+      rec = { workload: d.workload || 0, type: d.type, completed: false, current: false, failed: false };
+      byKey.set(key, rec);
+    }
     const st = status.get(d.id);
-    if (st === STATUS.COMPLETED) chCursada += ch;
-    else if (st === STATUS.CURRENT) {
-      cursando++;
-      cursandoIds.push(d);
-    } else if (st === STATUS.FAILED) reprovadas++;
+    if (st === STATUS.COMPLETED) rec.completed = true;
+    else if (st === STATUS.CURRENT) rec.current = true;
+    else if (st === STATUS.FAILED) rec.failed = true;
+  }
+
+  for (const rec of byKey.values()) {
+    chTotal += rec.workload;
+    if (rec.type === 'Obrigatória') {
+      obrig++;
+      chObrigatoria += rec.workload;
+    } else if (rec.type === 'Optativa') opt++;
+    else if (rec.type === 'Complementar') comp++;
+
+    if (rec.completed) {
+      aprovadas++;
+      chCursada += rec.workload;
+    } else if (rec.current) cursando++;
+    else if (rec.failed) reprovadas++;
+  }
+
+  // Lista de disciplinas "Cursando" (cards): usa os nós reais, não as chaves.
+  for (const d of disciplines) {
+    if (status.get(d.id) === STATUS.CURRENT) cursandoIds.push(d);
   }
 
   const pct = MIN_GRADUATION_LOAD > 0 ? Math.min(100, Math.round((chCursada / MIN_GRADUATION_LOAD) * 100)) : 0;
@@ -103,7 +122,7 @@ function main() {
       stat('Obrigatórias', obrig),
       stat('Optativas', opt),
       stat('Complementares', comp),
-      stat('Aprovadas', completed.size),
+      stat('Aprovadas', aprovadas),
       stat('Cursando', cursando),
       stat('Reprovadas', reprovadas),
       stat('Disponíveis agora', available.size),
