@@ -26,19 +26,12 @@
       </header>
 
       <main class="app-main">
-        <section class="card">
-          <div class="card-head">
-            <h2 class="headline-md text-primary">Matriz Curricular</h2>
-            <span class="label-sm text-on-surface-variant" id="validation-status">Validando…</span>
-          </div>
-          <div class="label-md text-on-surface-variant" id="course-stats"></div>
-          <div id="validation-details"></div>
-        </section>
-
-        <section class="board-wrap">
+        <div class="board-toolbar">
           <div id="legend" class="legend-wrap" aria-label="Legenda"></div>
-          <div class="board" id="board"></div>
-        </section>
+          <span id="validation-status" class="label-sm text-on-surface-variant">Validando…</span>
+        </div>
+        <div id="validation-details"></div>
+        <div class="board" id="board"></div>
       </main>
 
       <footer class="app-footer">
