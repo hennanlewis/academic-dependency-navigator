@@ -93,21 +93,32 @@ export function openDisciplineSettings({ store, graph, disciplineId }) {
       semSection.className = 'settings-section';
       semSection.appendChild(label('Semestre', 'discipline-semester'));
 
-      const select = document.createElement('select');
-      select.id = 'discipline-semester';
-      select.name = 'semester';
-      select.className = 'move-select';
+      const semGrid = document.createElement('div');
+      semGrid.className = 'semester-options';
+      semGrid.setAttribute('role', 'radiogroup');
+      semGrid.setAttribute('aria-label', 'Semestre da disciplina');
 
       const numbers = [...Array(max).keys()].map((i) => i + 1);
       numbers.push(EXTRA_SEMESTER);
       for (const sem of numbers) {
-        const opt = document.createElement('option');
-        opt.value = String(sem);
-        opt.textContent = sem === EXTRA_SEMESTER ? `Semestre ${sem} (extra)` : `Semestre ${String(sem).padStart(2, '0')}`;
-        if (currentSemester === sem) opt.selected = true;
-        select.appendChild(opt);
+        const lbl = document.createElement('label');
+        lbl.className = 'semester-option';
+        lbl.title = sem === EXTRA_SEMESTER ? 'Semestre extra (11º)' : `Semestre ${sem}`;
+
+        const input = document.createElement('input');
+        input.type = 'radio';
+        input.name = 'semester';
+        input.value = String(sem);
+        if (currentSemester === sem) input.checked = true;
+
+        const span = document.createElement('span');
+        span.className = 'semester-option-label';
+        span.textContent = sem === EXTRA_SEMESTER ? `+${EXTRA_SEMESTER}` : `S${String(sem).padStart(2, '0')}`;
+
+        lbl.append(input, span);
+        semGrid.appendChild(lbl);
       }
-      semSection.appendChild(select);
+      semSection.appendChild(semGrid);
       body.appendChild(semSection);
 
       // ---- Tentativas ----
@@ -147,7 +158,7 @@ export function openDisciplineSettings({ store, graph, disciplineId }) {
         if (nextStatus !== store.getStatus(disciplineId)) {
           store.setStatus(disciplineId, nextStatus, g);
         }
-        const semEl = dialog.querySelector('#discipline-semester');
+        const semEl = dialog.querySelector('input[name="semester"]:checked');
         if (semEl) {
           const nextSem = Number(semEl.value);
           if (store.getSemesterOverride(disciplineId) !== nextSem) {
