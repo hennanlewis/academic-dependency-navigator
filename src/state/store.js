@@ -38,6 +38,20 @@ export function createStore(initial = {}) {
     isSelected(id) {
       return state.selected.has(id);
     },
+    /**
+     * Substitui as fatias de estado por um conjunto restaurado (importar/
+     * carregar plano). Não dispara auto-completamento nem recálculo — apenas
+     * repõe a memória e notifica uma vez.
+     * @param {Object} slices fatias no formato de loadState
+     */
+    hydrate(slices) {
+      if (!slices) return;
+      state.selected = new Set(slices.selected || []);
+      state.status = new Map(slices.status || []);
+      state.semesterOverrides = new Map(slices.semesterOverrides || []);
+      state.attempts = Array.isArray(slices.attempts) ? slices.attempts.slice() : [];
+      emit();
+    },
     toggleSelect(id) {
       if (state.selected.has(id)) {
         state.selected.delete(id);
@@ -94,6 +108,49 @@ export function createStore(initial = {}) {
       if (status === STATUS.CURRENT && graph) {
         for (const pre of graph.getAllPrerequisites(id)) {
           if (!state.status.has(pre)) state.status.set(pre, STATUS.COMPLETED);
+        }
+      }
+
+      emit();
+    },
+
+    /**
+     * Aplica um status em lote a vários ids, com uma única notificação.
+     * Reutiliza a mesma lógica do `setStatus` (auto-completa pré-requisitos
+     * quando CURRENT e remove tentativas quando COMPLETED).
+     * @param {string[]|Set<string>} ids ids-alvo
+     * @param {string|null} status um valor de STATUS
+     * @param {import('../domain/graph.js').CurriculumGraph} [graph]
+     */
+    applyStatusBulk(ids, status, graph) {
+      const target = Array.from(ids ?? []);
+      if (target.length === 0) return;
+
+      for (const id of target) {
+        if (status === STATUS.NONE || status === undefined || status === null) {
+          state.status.delete(id);
+        } else {
+          state.status.set(id, status);
+        }
+
+        if (status === STATUS.COMPLETED) {
+          const copies = state.attempts
+            .filter((a) => a.originalId === id)
+            .map((a) => a.id);
+          if (copies.length) {
+            state.attempts = state.attempts.filter((a) => a.originalId !== id);
+            for (const cid of copies) {
+              state.status.delete(cid);
+              state.semesterOverrides.delete(cid);
+              state.selected.delete(cid);
+            }
+          }
+        }
+
+        if (status === STATUS.CURRENT && graph) {
+          for (const pre of graph.getAllPrerequisites(id)) {
+            if (!state.status.has(pre)) state.status.set(pre, STATUS.COMPLETED);
+          }
         }
       }
 
