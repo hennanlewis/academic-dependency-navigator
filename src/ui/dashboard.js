@@ -9,6 +9,12 @@ import { createApp } from './bootstrap.js';
 import { deriveAvailable } from '../state/selectors.js';
 import { STATUS } from '../domain/status.js';
 import { renderCard } from './render/card.js';
+import { openModal } from './render/modal.js';
+import {
+  currentSemester,
+  estimateGraduation,
+  projectedLoad,
+} from '../domain/services/planner-service.js';
 
 // Carga horária mínima total para se formar
 // (vem do PPC; aqui como constante explícita).
@@ -61,6 +67,7 @@ function main() {
 
   const status = state.status;
   const available = deriveAvailable(graph, status);
+  const overrides = state.semesterOverrides;
 
   let chTotal = 0;
   let chObrigatoria = 0;
@@ -149,6 +156,133 @@ function main() {
     }
     if (count) count.textContent = `${sorted.length} disciplina(s)`;
   }
+
+  // ---- Plano de planejamento (Fase 7) ----
+  const plannerStats = document.getElementById('planner-stats');
+  const plannerProject = document.getElementById('planner-project');
+  if (plannerStats) {
+    const sem = currentSemester(graph, status, overrides);
+    const grad = estimateGraduation(graph, disciplines, status, overrides);
+
+    const finishLabel =
+      grad.obligatoryRemaining === 0
+        ? 'Formado'
+        : grad.remainingSemesters <= 0
+          ? 'Já disponível'
+          : `Faltam ${grad.remainingSemesters}`;
+
+    plannerStats.replaceChildren(
+      stat('Semestre atual', sem || '—', sem ? `S${sem}` : 'nenhuma disciplina com status'),
+      stat('Obrigatórias restantes', grad.obligatoryRemaining),
+      stat('Conclusão prevista', grad.finishAt ? `S${grad.finishAt}` : '—', finishLabel),
+      stat('Disponíveis agora', available.size)
+    );
+  }
+
+  if (plannerProject) {
+    plannerProject.replaceChildren();
+    const { rows, total, totalDisciplines, totalPct } = projectedLoad(graph, disciplines, status, overrides, MIN_GRADUATION_LOAD);
+    if (rows.length === 0) {
+      const empty = document.createElement('p');
+      empty.className = 'stat-note';
+      empty.textContent = 'Nenhuma disciplina pendente.';
+      plannerProject.appendChild(empty);
+    } else {
+      const head = document.createElement('p');
+      head.className = 'stat-note';
+      head.textContent = `Distribuição de carga por semestre. Clique num semestre para ver as disciplinas.`;
+      plannerProject.appendChild(head);
+
+      const listEl = document.createElement('div');
+      listEl.className = 'planner-proj-list';
+      for (const row of rows) {
+        const item = document.createElement('button');
+        item.type = 'button';
+        item.className = 'planner-proj-row';
+        item.dataset.empty = row.disciplines.length === 0 ? 'true' : '';
+        item.title = row.disciplines.length ? 'Ver disciplinas planejadas' : 'Sem disciplinas no semestre';
+        item.disabled = row.disciplines.length === 0;
+        item.addEventListener('click', () =>
+          openModal({
+            eyebrow: 'Planejamento',
+            title: `Semestre ${row.semester}`,
+            content: (body) => {
+              body.appendChild(plannerSemesterList(row.disciplines, graph));
+            },
+          })
+        );
+
+        const sem = document.createElement('span');
+        sem.className = 'planner-proj-sem';
+        sem.textContent = `S${row.semester}`;
+
+        const names = document.createElement('span');
+        names.className = 'planner-proj-names';
+        names.textContent = row.disciplines.length ? `${row.disciplines.length} disciplina(s)` : '—';
+
+        const load = document.createElement('span');
+        load.className = 'planner-proj-load';
+        load.textContent = `${row.workload}h · ${row.pct.toFixed(0)}%`;
+
+        item.append(sem, names, load);
+        listEl.appendChild(item);
+      }
+
+      // Linha de total (contagem + carga + % sobre a carga-alvo).
+      const totalRow = document.createElement('div');
+      totalRow.className = 'planner-proj-row planner-proj-total';
+      const tSem = document.createElement('span');
+      tSem.className = 'planner-proj-sem';
+      tSem.textContent = 'Total';
+      const tNames = document.createElement('span');
+      tNames.className = 'planner-proj-names';
+      tNames.textContent = `${totalDisciplines} disciplina(s) · base ${MIN_GRADUATION_LOAD}h`;
+      const tLoad = document.createElement('span');
+      tLoad.className = 'planner-proj-load';
+      tLoad.textContent = `${total}h · ${totalPct.toFixed(0)}%`;
+      totalRow.append(tSem, tNames, tLoad);
+      listEl.appendChild(totalRow);
+
+      plannerProject.appendChild(listEl);
+    }
+  }
+}
+
+// Lista de disciplinas planejadas de um semestre, no estilo das linhas do
+// Catálogo (código à esquerda, nome, badges de tipo/status, meta de carga).
+function plannerSemesterList(disciplines, graph) {
+  const list = document.createElement('div');
+  list.className = 'catalog-list';
+  for (const d of disciplines) {
+    const node = graph.getDiscipline(d.id) || graph.getDiscipline(d.key);
+    const row = document.createElement('button');
+    row.type = 'button';
+    row.className = 'catalog-row';
+    row.disabled = true;
+
+    const code = document.createElement('span');
+    code.className = 'catalog-code';
+    code.textContent = node && node.code ? node.code : d.id;
+
+    const name = document.createElement('span');
+    name.className = 'catalog-name';
+    name.textContent = d.name;
+
+    const badges = document.createElement('span');
+    badges.className = 'catalog-badges';
+    const type = document.createElement('span');
+    type.className = 'catalog-type';
+    type.textContent = d.type;
+    badges.appendChild(type);
+
+    const meta = document.createElement('span');
+    meta.className = 'catalog-meta';
+    meta.textContent = `${d.workload}h`;
+
+    row.append(code, name, badges, meta);
+    list.appendChild(row);
+  }
+  return list;
 }
 
 document.addEventListener('DOMContentLoaded', main);
