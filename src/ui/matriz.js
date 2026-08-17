@@ -15,6 +15,8 @@ import { renderBoard } from './render/board.js';
 import { renderLegend } from './render/legend.js';
 import { setupSelection } from './interactions/selection.js';
 import { setupStatusEditor } from './interactions/status-editor.js';
+import { setupShortcuts } from './interactions/shortcuts.js';
+import { renderBulkBar } from './interactions/bulk-actions.js';
 import { createApp } from './bootstrap.js';
 
 function renderMeta(curriculum) {
@@ -89,6 +91,11 @@ function main() {
     setupSelection({ board, store });
     setupStatusEditor({ board, store, graph: () => app.getGraph() });
   }
+
+  const bulkSlot = document.getElementById('bulk-bar');
+  if (bulkSlot) bulkSlot.replaceChildren(renderBulkBar({ store, graph: () => app.getGraph() }));
+
+  setupShortcuts({ store, graph: () => app.getGraph() });
 
   window.__adnStore = store;
   window.__adnGraph = () => app.getGraph();
