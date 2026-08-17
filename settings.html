@@ -45,6 +45,33 @@
         </section>
 
         <section class="card settings-section">
+          <h2 class="headline-md text-primary">Exportar / Importar plano</h2>
+          <p class="label-md text-on-surface-variant">
+            Exporte o progresso como <code>.json</code> para compartilhar ou restaurar em outra máquina.
+          </p>
+          <div class="settings-actions">
+            <button id="export-plan" class="btn" type="button">Exportar plano (.json)</button>
+            <label class="btn btn-outline">
+              Importar plano
+              <input id="import-plan" type="file" accept="application/json,.json" hidden />
+            </label>
+            <span id="transfer-status" class="label-sm text-on-surface-variant"></span>
+          </div>
+        </section>
+
+        <section class="card settings-section">
+          <h2 class="headline-md text-primary">Versões de planos</h2>
+          <p class="label-md text-on-surface-variant">
+            Salve organizações da matriz com nomes e volte a elas depois.
+          </p>
+          <div class="settings-actions">
+            <input id="plan-name" class="text-field" placeholder="Nome do plano" />
+            <button id="save-plan" class="btn" type="button">Salvar versão</button>
+          </div>
+          <div id="plans-list" class="plans-list"></div>
+        </section>
+
+        <section class="card settings-section">
           <h2 class="headline-md text-primary">Sobre</h2>
           <p class="label-md text-on-surface-variant">
             Academic Dependency Navigator — HTML, CSS e JavaScript puros, ES Modules, sem framework e sem build.
