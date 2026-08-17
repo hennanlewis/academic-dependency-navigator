@@ -619,6 +619,44 @@
   color: var(--on-surface);
 }
 
+/* Seletor de semestre em botões (modal do catálogo) */
+.semester-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(48px, 1fr));
+  gap: var(--space-sm);
+}
+
+.semester-option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-sm) var(--space-xs);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}
+.semester-option:hover { background-color: var(--surface-container); }
+
+.semester-option .semester-option-input,
+.semester-option input[type='radio'] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.semester-option:has(input:checked) {
+  border-color: var(--primary);
+  background-color: color-mix(in srgb, var(--primary) 14%, var(--surface-bright));
+}
+
+.semester-option-label {
+  font-size: var(--font-size-label-sm);
+  font-weight: var(--font-weight-label-md);
+  color: var(--on-surface);
+}
+
 .status-hint {
   margin-top: var(--space-md);
   font-size: var(--font-size-body-md);
@@ -992,9 +1030,19 @@
   opacity: 0.4;
   cursor: default;
 }
-.bulk-actions .btn[data-status='completed'] { background-color: var(--status-approved); }
-.bulk-actions .btn[data-status='current'] { background-color: var(--status-current); }
-.bulk-actions .btn[data-status='failed'] { background-color: var(--status-failed); }
+.bulk-actions .btn[data-status='completed'] {
+  background-color: var(--status-approved);
+  color: #ffffff;
+}
+.bulk-actions .btn[data-status='current'] {
+  background-color: var(--status-current);
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+.bulk-actions .btn[data-status='failed'] {
+  background-color: var(--status-failed);
+  color: #ffffff;
+}
 
 /* Lista de versões de planos (Fase 8) */
 .plans-list {
@@ -1024,4 +1072,34 @@
 .plan-actions {
   display: flex;
   gap: var(--space-xs);
+}
+
+/* Card de atalhos (Configurações) */
+.shortcut-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.shortcut-list li {
+  font-size: var(--font-size-label-md);
+  color: var(--on-surface-variant);
+}
+
+.shortcut-list kbd {
+  display: inline-block;
+  min-width: 1.5em;
+  text-align: center;
+  padding: 1px var(--space-sm);
+  border: 1px solid var(--outline-variant);
+  border-bottom-width: 2px;
+  border-radius: var(--radius-sm);
+  background-color: var(--surface-container);
+  color: var(--on-surface);
+  font-family: var(--font-family);
+  font-size: var(--font-size-label-sm);
+  font-weight: var(--font-weight-label-md);
 }
