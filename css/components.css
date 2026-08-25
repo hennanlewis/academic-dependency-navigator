@@ -1032,16 +1032,16 @@
 }
 .bulk-actions .btn[data-status='completed'] {
   background-color: var(--status-approved);
-  color: #ffffff;
+  color: var(--on-status-approved);
 }
 .bulk-actions .btn[data-status='current'] {
   background-color: var(--status-current);
-  color: #ffffff;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+  color: var(--on-status-current);
+  text-shadow: var(--text-shadow-on-status);
 }
 .bulk-actions .btn[data-status='failed'] {
   background-color: var(--status-failed);
-  color: #ffffff;
+  color: var(--on-status-failed);
 }
 
 /* Lista de versões de planos (Fase 8) */
